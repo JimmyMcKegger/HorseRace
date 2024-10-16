@@ -2,33 +2,18 @@
 
 <PageTitle>Events</PageTitle>
 
-<h1>Welcome to the Events index page</h1>
-
-@if (EventsToDisplay.Count > 0)
+<h1>Events index</h1>
+<br>
+@if (eventsList.Count > 0)
 {
     <ul>
-        @foreach (var e in EventsToDisplay)
+        @foreach (var evnt in eventsList)
         {
-            <li>
-                @e
-            </li>
-        }
+            <li>@evnt</li>
+        } 
     </ul>
 }
 
 @code {
-    public List<Event> EventsToDisplay = new List<Event>();
-
-    protected override void OnInitialized()
-    {
-     
-        Race raceOne = new Race("Test Race", DateTime.Now);
-        List<Race> races = new List<Race> { raceOne };
-        Console.WriteLine(races.Count());
-
-        EventsToDisplay = new List<Event>
-        {
-            new Event("Test Event", "Here", races.Count, races)
-        };
-    }
+    private List<Event> eventsList = Event.TestEvents();
 }

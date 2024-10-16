@@ -5,46 +5,44 @@ public class Event
     // Instance Fields 
     private string name;
     private string location;
-    private int numRaces;
     private List<Race> races;
-        
+
     // Getters and setter properties
     public string Name { get; set; }
     public string Location { get; set; }
-    public int NumRaces { get; set; }
-    public List<Race> Races { get => races; set => races = value; }
-    
+    public List<Race> Races { get; set; }
+    public int NumRaces { get => Races.Count; }
+
 
     // Constructors
     public Event() { }
-    
-    public Event(string name, string location, int numRaces, List<Race> races)
+
+    public Event(string name, string location, List<Race> races)
     {
         Name = name;
         Location = location;
-        NumRaces = numRaces;
         Races = races;
     }
-    
+
     // Methods
     public override string ToString()
     {
-        
-        return $"{GetType().Name} - {name} at {Location}. {NumRaces} Race{(NumRaces == 1 ? "" : "s")}.";
+
+        return $"<{GetType().Name}> '{Name}' at {Location}. {NumRaces} Race{(NumRaces == 1 ? "" : "s")}.";
     }
 
-    public static List<Event> AllTestEvents()
+    public static List<Event> TestEvents()
     {
-        // test data
-        DateTime now = DateTime.Now;
-        List<Race> races = new List<Race>();
-        Race r1 = new Race("test", now);
-        races.Add(r1);
-
-        List<Event> events = new List<Event>()
+        string[] locations = new string[] { "Dublin", "Cork", "Galway", "Limerick", "Belfast", "Derry", "Waterford", "Sligo", "Dundalk" };
+        var events = new List<Event>();
+        var testRaces = new List<Race>();
+        var raceOne = new Race("race1", DateTime.Now);
+        testRaces.Add(raceOne);
+        
+        for (int i = 0; i < locations.Length; i++)
         {
-            new Event("test event", "here", 1, races)
-        };
+            events.Add(new Event($"{locations[i]} Derby", locations[i], testRaces));
+        }
 
         return events;
     }
