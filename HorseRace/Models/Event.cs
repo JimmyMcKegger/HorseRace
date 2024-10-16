@@ -37,13 +37,13 @@ public class Event
             { "Tallaght", "Mayfield", "Oranmore", "Adare", "Belfast", "Derry", "Dungarvan", "Grange", "Dundalk" };
         var locations = new string[] { "Dublin", "Cork", "Galway", "Limerick", "Antrim", "Londonderry", "Waterford", "Sligo", "Louth" };
         var events = new List<Event>();
-        
+
         var testRaces = new List<Race>();
         var raceOne = new Race("race1", DateTime.Now);
         var raceTwo = new Race("race2", DateTime.Now);
         testRaces.Add(raceOne);
         testRaces.Add(raceTwo);
-        
+
         // TODO: refactor with LINQ
         for (var i = 0; i < locations.Length; i++)
         {

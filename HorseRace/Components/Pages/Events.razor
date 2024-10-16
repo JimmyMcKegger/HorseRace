@@ -4,17 +4,23 @@
 
 <h1>Events index</h1>
 <br>
-@if (eventsList.Count > 0)
+@if (eventsList?.Count > 0)
 {
+    // TODO: add collapsable components
+    // https://getbootstrap.com/docs/4.0/components/collapse/#accordion-example
     <div class="container">
         @foreach (var evnt in eventsList)
         {
             <div class="event">
-                <ḥ3>@evnt</ḥ3>
+                <p>@evnt</p>
                 <Races RaceList="@evnt.Races"></Races>
             </div>
-        } 
+        }
     </div>
+}
+else
+{
+    <p>No events</p>
 }
 
 @code {

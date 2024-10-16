@@ -1,10 +1,13 @@
-
 <ul>
-    @foreach (Race r in races)
+    @if (this.races != null && this.races.Count > 0)
     {
-        <li>@r</li>
+        @foreach (var r in races)
+        {
+            <li>@r</li>
+        }
     }
 </ul>
+
 @code{
     [Parameter]
     public List<Race>? RaceList { get; set; }
