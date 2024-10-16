@@ -29,6 +29,23 @@ public class Event
     // Methods
     public override string ToString()
     {
-        return $"{GetType().Name} - {name} at {Location}. {NumRaces} Races";
+        
+        return $"{GetType().Name} - {name} at {Location}. {NumRaces} Race{(NumRaces == 1 ? "" : "s")}.";
+    }
+
+    public static List<Event> AllTestEvents()
+    {
+        // test data
+        DateTime now = DateTime.Now;
+        List<Race> races = new List<Race>();
+        Race r1 = new Race("test", now);
+        races.Add(r1);
+
+        List<Event> events = new List<Event>()
+        {
+            new Event("test event", "here", 1, races)
+        };
+
+        return events;
     }
 }
