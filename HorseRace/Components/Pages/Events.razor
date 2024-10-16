@@ -6,12 +6,15 @@
 <br>
 @if (eventsList.Count > 0)
 {
-    <ul>
+    <div class="container">
         @foreach (var evnt in eventsList)
         {
-            <li>@evnt</li>
+            <div class="event">
+                <ḥ3>@evnt</ḥ3>
+                <Races RaceList="@evnt.Races"></Races>
+            </div>
         } 
-    </ul>
+    </div>
 }
 
 @code {

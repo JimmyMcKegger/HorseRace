@@ -1,0 +1,18 @@
+
+<ul>
+    @foreach (Race r in races)
+    {
+        <li>@r</li>
+    }
+</ul>
+@code{
+    [Parameter]
+    public List<Race>? RaceList { get; set; }
+
+    private List<Race>? races;
+
+    protected override void OnParametersSet()
+    {
+        races = RaceList;
+    }
+}
