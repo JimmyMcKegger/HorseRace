@@ -1,0 +1,118 @@
+{
+  "name": "Tallaght Derby",
+  "location": "Dublin",
+  "races": [
+    {
+      "Name": "race1",
+      "StartTime": "2024-10-17T01:18:22.972814+01:00"
+    },
+    {
+      "Name": "race2",
+      "StartTime": "2024-10-17T01:18:22.998207+01:00"
+    }
+  ]
+}{
+  "name": "Mayfield Derby",
+  "location": "Cork",
+  "races": [
+    {
+      "Name": "race1",
+      "StartTime": "2024-10-17T01:18:22.972814+01:00"
+    },
+    {
+      "Name": "race2",
+      "StartTime": "2024-10-17T01:18:22.998207+01:00"
+    }
+  ]
+}{
+  "name": "Oranmore Derby",
+  "location": "Galway",
+  "races": [
+    {
+      "Name": "race1",
+      "StartTime": "2024-10-17T01:18:22.972814+01:00"
+    },
+    {
+      "Name": "race2",
+      "StartTime": "2024-10-17T01:18:22.998207+01:00"
+    }
+  ]
+}{
+  "name": "Adare Derby",
+  "location": "Limerick",
+  "races": [
+    {
+      "Name": "race1",
+      "StartTime": "2024-10-17T01:18:22.972814+01:00"
+    },
+    {
+      "Name": "race2",
+      "StartTime": "2024-10-17T01:18:22.998207+01:00"
+    }
+  ]
+}{
+  "name": "Belfast Derby",
+  "location": "Antrim",
+  "races": [
+    {
+      "Name": "race1",
+      "StartTime": "2024-10-17T01:18:22.972814+01:00"
+    },
+    {
+      "Name": "race2",
+      "StartTime": "2024-10-17T01:18:22.998207+01:00"
+    }
+  ]
+}{
+  "name": "Derry Derby",
+  "location": "Londonderry",
+  "races": [
+    {
+      "Name": "race1",
+      "StartTime": "2024-10-17T01:18:22.972814+01:00"
+    },
+    {
+      "Name": "race2",
+      "StartTime": "2024-10-17T01:18:22.998207+01:00"
+    }
+  ]
+}{
+  "name": "Dungarvan Derby",
+  "location": "Waterford",
+  "races": [
+    {
+      "Name": "race1",
+      "StartTime": "2024-10-17T01:18:22.972814+01:00"
+    },
+    {
+      "Name": "race2",
+      "StartTime": "2024-10-17T01:18:22.998207+01:00"
+    }
+  ]
+}{
+  "name": "Grange Derby",
+  "location": "Sligo",
+  "races": [
+    {
+      "Name": "race1",
+      "StartTime": "2024-10-17T01:18:22.972814+01:00"
+    },
+    {
+      "Name": "race2",
+      "StartTime": "2024-10-17T01:18:22.998207+01:00"
+    }
+  ]
+}{
+  "name": "Dundalk Derby",
+  "location": "Louth",
+  "races": [
+    {
+      "Name": "race1",
+      "StartTime": "2024-10-17T01:18:22.972814+01:00"
+    },
+    {
+      "Name": "race2",
+      "StartTime": "2024-10-17T01:18:22.998207+01:00"
+    }
+  ]
+}

@@ -1,7 +1,12 @@
+using Newtonsoft.Json;
+
 namespace HorseRace.Models;
+
 
 public class Event
 {
+    static readonly string EventFilePath = "data/events.jsonl";
+
     // Instance Fields 
     private string name;
     private string location;
@@ -51,5 +56,24 @@ public class Event
         }
 
         return events;
+    }
+
+    public static void SaveEvents(List<Event> events)
+    {
+        if (events != null)
+        {
+            string jsonString = "";
+            foreach (var e in events)
+            {
+                string json = JsonConvert.SerializeObject(new
+                {
+                    name = e.Name,
+                    location = e.Location,
+                    races = e.Races,
+                }, Formatting.Indented);
+                jsonString += json;
+            }
+            File.WriteAllText(EventFilePath, jsonString);
+        }
     }
 }

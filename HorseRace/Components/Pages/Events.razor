@@ -17,6 +17,10 @@
             </div>
         }
     </div>
+    <div>
+        <button @onclick="UpdateEvents">Save</button>
+
+    </div>
 }
 else
 {
@@ -25,4 +29,10 @@ else
 
 @code {
     private List<Event> eventsList = Event.TestEvents();
+    private void UpdateEvents()
+    {
+        Console.WriteLine("Saving!");
+        Event.SaveEvents(eventsList);
+    }
+    
 }
