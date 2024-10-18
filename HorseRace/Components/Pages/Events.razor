@@ -16,8 +16,7 @@
                 <Races RaceList="@evnt.Races"></Races>
             </div>
             <br/>
-            <a href="">Edit</a>
-            
+            <a href="events/@evnt.Id">Edit</a>
         }
     </div>
     <div class="container">
@@ -37,7 +36,7 @@ else
 }
 
 @code {
-    private List<Event> eventsList = Event.TestEvents();
+    private List<Event> eventsList = Event.LoadEvents();   // Event.TestEvents();
     private void UpdateEvents()
     {
         Console.WriteLine("Saving!");
@@ -46,7 +45,6 @@ else
     
     private void LogEvents()
     {
-        Console.WriteLine("Loading!");
         Event.LoadEvents();
     }
     

@@ -5,7 +5,8 @@ namespace HorseRace.Models;
 public class Event
 {
     private static readonly string EventFilePath = "data/events.json";
-    private static int eventCount = 1;
+    // find the biggest id and increment from there
+    private static int eventCount = LoadEvents().Any() ? LoadEvents().Max(e => e.Id) + 1 : 1;
 
     // Fields 
     private int id;
@@ -20,7 +21,7 @@ public class Event
     public string Location { get; set; }
     public List<Race> Races { get; set; }
     public int NumRaces => Races.Count;
-    
+
     // Constructors
     public Event() { }
 
@@ -70,14 +71,22 @@ public class Event
         File.WriteAllText(EventFilePath, jsonString);
     }
 
+
     public static List<Event> LoadEvents()
     {
         string allText = File.ReadAllText(EventFilePath);
         var eventList = JsonConvert.DeserializeObject<List<Event>>(allText);
-        foreach (var e in eventList)
+        if (eventList != null)
         {
-            Console.WriteLine(e);
+            foreach (var e in eventList)
+            {
+                Console.WriteLine(e);
+            }
+            Console.WriteLine($"{eventList.Count} events loaded.");
+            return eventList;
         }
-        return eventList ?? new List<Event>();
+
+        return new List<Event>();
+        ;
     }
 }
