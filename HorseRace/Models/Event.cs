@@ -5,42 +5,43 @@ namespace HorseRace.Models;
 public class Event
 {
     private static readonly string EventFilePath = "data/events.json";
-    private static int eventCount = 0;
+    private static int eventCount = 1;
 
     // Fields 
+    private int id;
     private string name;
     private string location;
     private List<Race> races;
 
     // Getters and setter properties
-    public int Id { get; }
+    public int Id { get; set; }
+    public static int EventCount { get; set; }
     public string Name { get; set; }
     public string Location { get; set; }
     public List<Race> Races { get; set; }
     public int NumRaces => Races.Count;
-    public static int EventCount { get; set; }
     
     // Constructors
     public Event() { }
 
     public Event(string name, string location, List<Race> races)
     {
-        IncrementEventCount();
-        Id = Id;
+        Id = EventCount;
         Name = name;
         Location = location;
         Races = races;
+        IncrementEventCount();
     }
 
     // Methods
     public override string ToString()
     {
-        return $"<{GetType().Name}> '{Name}' in {Location}. {NumRaces} Race{(NumRaces == 1 ? "" : "s")}.";
+        return $"<{GetType().Name}> {Id} '{Name}' in {Location}. {NumRaces} Race{(NumRaces == 1 ? "" : "s")}.";
     }
 
     private static void IncrementEventCount()
     {
-        eventCount++;
+        EventCount++;
     }
 
     public static List<Event> TestEvents()
@@ -75,7 +76,7 @@ public class Event
         var eventList = JsonConvert.DeserializeObject<List<Event>>(allText);
         foreach (var e in eventList)
         {
-            Console.WriteLine($"{e.Id} - {e.Name} in {e.Location}.");
+            Console.WriteLine(e);
         }
         return eventList ?? new List<Event>();
     }
