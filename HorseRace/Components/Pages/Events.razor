@@ -15,11 +15,20 @@
                 <p>@evnt</p>
                 <Races RaceList="@evnt.Races"></Races>
             </div>
+            <br/>
+            <a href="">Edit</a>
+            
         }
     </div>
-    <div>
-        <button @onclick="UpdateEvents">Save</button>
-
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <button @onclick="UpdateEvents">Save</button>
+            </div>
+            <div class="col">
+                <button @onclick="LogEvents">Log</button>
+            </div>
+        </div>
     </div>
 }
 else
@@ -33,6 +42,12 @@ else
     {
         Console.WriteLine("Saving!");
         Event.SaveEvents(eventsList);
+    }
+    
+    private void LogEvents()
+    {
+        Console.WriteLine("Loading!");
+        Event.LoadEvents();
     }
     
 }

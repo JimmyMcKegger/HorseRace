@@ -2,45 +2,54 @@ using Newtonsoft.Json;
 
 namespace HorseRace.Models;
 
-
 public class Event
 {
-    static readonly string EventFilePath = "data/events.jsonl";
+    private static readonly string EventFilePath = "data/events.json";
+    private static int eventCount = 1;
 
-    // Instance Fields 
+    // Fields 
+    private int id;
     private string name;
     private string location;
     private List<Race> races;
 
     // Getters and setter properties
+    public int Id { get; set; }
+    public static int EventCount { get; set; }
     public string Name { get; set; }
     public string Location { get; set; }
     public List<Race> Races { get; set; }
-    public int NumRaces { get => Races.Count; }
-
-
+    public int NumRaces => Races.Count;
+    
     // Constructors
     public Event() { }
 
     public Event(string name, string location, List<Race> races)
     {
+        Id = EventCount;
         Name = name;
         Location = location;
         Races = races;
+        IncrementEventCount();
     }
 
     // Methods
     public override string ToString()
     {
+        return $"<{GetType().Name}> {Id} '{Name}' in {Location}. {NumRaces} Race{(NumRaces == 1 ? "" : "s")}.";
+    }
 
-        return $"<{GetType().Name}> '{Name}' in {Location}. {NumRaces} Race{(NumRaces == 1 ? "" : "s")}.";
+    private static void IncrementEventCount()
+    {
+        EventCount++;
     }
 
     public static List<Event> TestEvents()
     {
-        var town = new string[]
+        var town = new[]
             { "Tallaght", "Mayfield", "Oranmore", "Adare", "Belfast", "Derry", "Dungarvan", "Grange", "Dundalk" };
-        var locations = new string[] { "Dublin", "Cork", "Galway", "Limerick", "Antrim", "Londonderry", "Waterford", "Sligo", "Louth" };
+        var locations = new[]
+            { "Dublin", "Cork", "Galway", "Limerick", "Antrim", "Londonderry", "Waterford", "Sligo", "Louth" };
         var events = new List<Event>();
 
         var testRaces = new List<Race>();
@@ -50,30 +59,25 @@ public class Event
         testRaces.Add(raceTwo);
 
         // TODO: refactor with LINQ
-        for (var i = 0; i < locations.Length; i++)
-        {
-            events.Add(new Event($"{town[i]} Derby", locations[i], testRaces));
-        }
+        for (var i = 0; i < locations.Length; i++) events.Add(new Event($"{town[i]} Derby", locations[i], testRaces));
 
         return events;
     }
 
     public static void SaveEvents(List<Event> events)
     {
-        if (events != null)
+        string jsonString = JsonConvert.SerializeObject(events, Formatting.Indented);
+        File.WriteAllText(EventFilePath, jsonString);
+    }
+
+    public static List<Event> LoadEvents()
+    {
+        string allText = File.ReadAllText(EventFilePath);
+        var eventList = JsonConvert.DeserializeObject<List<Event>>(allText);
+        foreach (var e in eventList)
         {
-            string jsonString = "";
-            foreach (var e in events)
-            {
-                string json = JsonConvert.SerializeObject(new
-                {
-                    name = e.Name,
-                    location = e.Location,
-                    races = e.Races,
-                }, Formatting.Indented);
-                jsonString += json;
-            }
-            File.WriteAllText(EventFilePath, jsonString);
+            Console.WriteLine(e);
         }
+        return eventList ?? new List<Event>();
     }
 }
