@@ -87,6 +87,17 @@ public class Event
         }
 
         return new List<Event>();
-        ;
+    }
+
+    public static Event? GetEventById(int id)
+    {
+        var evnt = LoadEvents().FirstOrDefault(e => e.Id == id);
+        if (evnt != null)
+        {
+            return evnt;
+        }
+
+        Console.WriteLine("No events found.");
+        return null;
     }
 }
