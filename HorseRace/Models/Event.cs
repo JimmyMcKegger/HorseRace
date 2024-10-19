@@ -93,12 +93,16 @@ public class Event
         var eventList = JsonConvert.DeserializeObject<List<Event>>(allText);
         if (eventList != null)
         {
+            var sortedEvents = eventList.
+                OrderBy(e => e.Id).
+                ToList();
+            
             foreach (var e in eventList)
             {
                 Console.WriteLine(e);
             }
-            Console.WriteLine($"{eventList.Count} events loaded.");
-            return eventList;
+            // Console.WriteLine($"{eventList.Count} events loaded.");
+            return sortedEvents;
         }
 
         return new List<Event>();
