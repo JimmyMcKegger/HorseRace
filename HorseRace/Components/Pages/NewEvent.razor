@@ -4,3 +4,63 @@
 
 <h1>New Event page</h1>
 
+<br/>
+
+<div class="container">
+    <h3>Name</h3>
+    <input type="text" autofocus required />
+    
+    <h3>Location</h3>
+    <input type="text" required />
+    
+    <div class="">
+        <h3>Races</h3>
+        <div class="">
+            <input type="text" placeholder="race1"/>
+            <input type="datetime-local" min="@_now" placeholder="@_now">
+        </div>
+        <div class="">
+            <input type="text" placeholder="race2"/>
+            <input type="datetime-local" min="@_now" placeholder="@_now">
+        </div>
+        <div class="">
+            <input type="text" placeholder="race3"/>
+            <input type="datetime-local" min="@_now" placeholder="@_now">
+        </div>
+    </div>
+    
+    <button
+        type="button"
+        class="btn btn-primary"
+        @onclick="AddEvent">
+        Add Event
+    </button>
+    <button
+        type="button"
+        class="btn btn-secondary"
+        @onclick="LogCount">
+        Log  Count
+    </button>
+    
+</div>
+
+@code {
+
+    private string _now = DateTime.Now.ToString("s");
+
+    private List<Event> allEvents = Event.LoadEvents();
+
+    private void AddEvent()
+    {
+        var raceOne = new Race("race1", DateTime.Now);
+        var raceTwo = new Race("race2", DateTime.Now);
+        var raceThree = new Race("race3", DateTime.Now);
+        Event.AddNew(new Event("Boyle Derby", "Roscommon", new List<Race>{ raceOne, raceTwo, raceThree  }));
+        allEvents = Event.LoadEvents();
+    }
+
+    private void LogCount()
+    {
+        Console.WriteLine(allEvents.Count);
+    }
+}

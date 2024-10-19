@@ -4,9 +4,9 @@ namespace HorseRace.Models;
 
 public class Event
 {
-    private static readonly string EventFilePath = "data/events.json";
+    private static readonly string EventFilePath = "Data/events.json";
     // find the biggest id and increment from there
-    private static int eventCount = LoadEvents().Any() ? LoadEvents().Max(e => e.Id) + 1 : 1;
+    private static int eventCount = LoadEvents().Any() ? LoadEvents().Count : 0;
 
     // Fields 
     private int id;
@@ -16,7 +16,13 @@ public class Event
 
     // Getters and setter properties
     public int Id { get; set; }
-    public static int EventCount { get; set; }
+
+    private static int EventCount
+    {
+        get => eventCount;
+        set => eventCount = eventCount + value;
+    }
+
     public string Name { get; set; }
     public string Location { get; set; }
     public List<Race> Races { get; set; }
@@ -34,17 +40,16 @@ public class Event
         IncrementEventCount();
     }
 
-    // Methods
-    public override string ToString()
-    {
-        return $"<{GetType().Name}> {Id} '{Name}' in {Location}. {NumRaces} Race{(NumRaces == 1 ? "" : "s")}.";
-    }
 
+    // Methods
+    public static void LogEventCount()
+    {
+        Console.WriteLine(EventCount);
+    }
     private static void IncrementEventCount()
     {
         EventCount++;
     }
-
     public static List<Event> TestEvents()
     {
         var town = new[]
@@ -64,7 +69,17 @@ public class Event
 
         return events;
     }
+    public override string ToString()
+    {
+        return $"<{GetType().Name}> {Id} '{Name}' in {Location}. {NumRaces} Race{(NumRaces == 1 ? "" : "s")}.";
+    }
 
+    public static void AddNew(Event newEvent)
+    {
+        var allEvents = LoadEvents();
+        allEvents.Add(newEvent);
+        SaveEvents(allEvents);
+    }
     public static void SaveEvents(List<Event> events)
     {
         string jsonString = JsonConvert.SerializeObject(events, Formatting.Indented);
