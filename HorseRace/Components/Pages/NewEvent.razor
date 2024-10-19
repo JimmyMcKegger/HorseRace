@@ -44,7 +44,7 @@
         Race race;
         for (int i = 0; i < eventNumRaces; i++)
         {
-            race = new Race($"race{i + 1}", DateTime.Now);
+            race = new Race($"Race {i + 1}", DateTime.Now);
             racesToInclude.Add(race);
         }
         Event.AddNew(new Event(eventName, eventLocation, racesToInclude));

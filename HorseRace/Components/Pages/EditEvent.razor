@@ -10,17 +10,17 @@ else
 
     <br>
     <br>
-    
+
     <div class="container">
         <h3>Name</h3>
-        <input type="text" @bind="currentEvent.Name" class="form-control" autofocus required />
+        <input type="text" @bind="currentEvent.Name" class="form-control" autofocus required/>
 
         <h3>Location</h3>
-        <input type="text" @bind="currentEvent.Location" class="form-control" required />
+        <input type="text" @bind="currentEvent.Location" class="form-control" required/>
 
         <div class="">
             <h3>Number of races</h3>
-            <input type="number"  class="form-control" min="1" max="50" placeholder="8" required>
+            <input type="number" @bind="currentEvent.NumRaces" class="form-control" min="1" max="50" placeholder="8" required>
         </div>
         <br/>
         <br/>
@@ -28,12 +28,10 @@ else
             type="button"
             class="btn btn-primary"
             @onclick="UpdateEvent">
-            Add Event
+            Update Event
         </button>
     </div>
-
 }
-
 
 @code {
     [Parameter]
@@ -48,14 +46,35 @@ else
         currentEvent = Event.GetEventById(i);
     }
     
+    [Inject] NavigationManager Navigation { get; set; }
+    
     private void UpdateEvent()
     {
         // load all events
+        List<Event> allEvents = Event.LoadEvents();
         
         // find the saved version
-        
+        int index = allEvents.FindIndex(e => e.Id == currentEvent.Id);
+        Console.WriteLine($"INDEX: {index}");
+
         // replace values with new ones
-        
-        // save the whole list of events again
+        if (index == -1)
+        {
+            Console.WriteLine("ERROR");
+            Navigation.NavigateTo($"/events");
+        }
+        else
+        {
+            Console.WriteLine($"INDEX: {index}");
+            allEvents[index].Name = currentEvent.Name;
+            allEvents[index].Location = currentEvent.Location;
+            allEvents[index].NumRaces = currentEvent.NumRaces;
+
+            // save the whole list of events again
+            Event.SaveEvents(allEvents);
+            // redirect
+            Navigation.NavigateTo($"/events/{currentEvent.Id}/races");
+        }
     }
-}
+
+    }

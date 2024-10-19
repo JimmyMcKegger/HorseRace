@@ -1,0 +1,32 @@
+@page "/events/{id}/races"
+
+@if (currentEvent != null)
+{
+    <div class="container">
+            <div class="event">
+                <h3>@currentEvent.Name races:</h3>
+                <Races RaceList="@currentEvent.Races"></Races>
+                <button><a href="events/@currentEvent.Id">Back to event</a></button>
+                <br/>
+            </div>
+            <br/>
+    </div>
+}
+else
+{
+    Console.WriteLine("No Event with th at ID");
+    <text>No races found</text>
+}
+
+@code {
+    [Parameter] public string Id { get; set; }
+
+    private Event? currentEvent;
+
+    protected override void OnParametersSet()
+    {
+        int i = Int32.Parse(Id);
+        currentEvent = Event.GetEventById(i);
+    }
+
+}
