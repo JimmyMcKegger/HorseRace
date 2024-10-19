@@ -25,13 +25,6 @@
         @onclick="AddEvent">
         Add Event
     </button>
-    <button
-        type="button"
-        class="btn btn-secondary"
-        @onclick="LogCount">
-        Log  Count
-    </button>
-    
 </div>
 
 @code {
@@ -56,6 +49,7 @@
         }
         Event.AddNew(new Event(eventName, eventLocation, racesToInclude));
         allEvents = Event.LoadEvents();
+        LogCount();
         // redirect to index view
         Navigation.NavigateTo("/events");
     }

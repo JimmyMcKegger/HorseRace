@@ -1,21 +1,41 @@
 @page "/events/{id}"
 
-<h3>Edit Event </h3>
-
-<br>
-<br>
-
-@if (currentEvent != null)
+@if (currentEvent == null)
 {
-    <p>@currentEvent.Name</p>
+    <p>Event not found!</p>
 }
 else
 {
-    <p>Event not found or invalid ID.</p>
+    <h3>Edit @currentEvent.Name</h3>
+
+    <br>
+    <br>
+    
+    <div class="container">
+        <h3>Name</h3>
+        <input type="text" @bind="currentEvent.Name" class="form-control" autofocus required />
+
+        <h3>Location</h3>
+        <input type="text" @bind="currentEvent.Location" class="form-control" required />
+
+        <div class="">
+            <h3>Number of races</h3>
+            <input type="number"  class="form-control" min="1" max="50" placeholder="8" required>
+        </div>
+        <br/>
+        <br/>
+        <button
+            type="button"
+            class="btn btn-primary"
+            @onclick="UpdateEvent">
+            Add Event
+        </button>
+    </div>
+
 }
 
+
 @code {
-    
     [Parameter]
     public string Id { get; set; }
     
@@ -26,5 +46,16 @@ else
         int i = Int32.Parse(Id);
         Console.WriteLine(i);
         currentEvent = Event.GetEventById(i);
+    }
+    
+    private void UpdateEvent()
+    {
+        // load all events
+        
+        // find the saved version
+        
+        // replace values with new ones
+        
+        // save the whole list of events again
     }
 }
