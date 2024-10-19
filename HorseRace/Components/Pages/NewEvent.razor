@@ -43,6 +43,7 @@
     private string _now = DateTime.Now.ToString("s");
 
     private List<Event> allEvents = Event.LoadEvents();
+    [Inject] NavigationManager Navigation { get; set; }
 
     private void AddEvent()
     {
@@ -55,6 +56,8 @@
         }
         Event.AddNew(new Event(eventName, eventLocation, racesToInclude));
         allEvents = Event.LoadEvents();
+        // redirect to index view
+        Navigation.NavigateTo("/events");
     }
 
     private void LogCount()
