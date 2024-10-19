@@ -94,6 +94,7 @@ public class Event
         var evnt = LoadEvents().FirstOrDefault(e => e.Id == id);
         if (evnt != null)
         {
+            Console.WriteLine($"returning event: {evnt}");
             return evnt;
         }
 

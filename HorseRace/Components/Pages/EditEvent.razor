@@ -5,7 +5,7 @@
 <br>
 <br>
 
-@if (@currentEvent != null)
+@if (currentEvent != null)
 {
     <p>@currentEvent.Name</p>
 }
@@ -18,15 +18,14 @@ else
     
     [Parameter]
     public string Id { get; set; }
-
+    
     private Event? currentEvent;
 
     protected override void OnParametersSet()
     {
         int i = Int32.Parse(Id);
         Console.WriteLine(i);
-        var currentEvent = Event.GetEventById(i);
-        Console.WriteLine(currentEvent);
+        currentEvent = Event.GetEventById(i);
     }
 
 }
