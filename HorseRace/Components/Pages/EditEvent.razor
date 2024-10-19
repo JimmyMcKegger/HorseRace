@@ -26,9 +26,21 @@ else
         <br/>
         <button
             type="button"
+            class="btn btn-secondary"
+            @onclick="BackButton">
+            Back to events
+        </button>
+        <button
+            type="button"
             class="btn btn-primary"
             @onclick="UpdateEvent">
             Update Event
+        </button>
+        <button
+            type="button"
+            class="btn btn-danger"
+            @onclick="DeleteEvent">
+            Delete Event
         </button>
     </div>
 }
@@ -75,6 +87,20 @@ else
             // redirect
             Navigation.NavigateTo($"/events/{currentEvent.Id}/races");
         }
+    }
+
+    private void BackButton()
+    {
+        Navigation.NavigateTo($"/events");
+    }
+
+    private void DeleteEvent()
+    {
+        var allEvents = Event.LoadEvents();
+        var filteredEvents = allEvents.Where(e => e.Id != currentEvent.Id).ToList();
+        Event.SaveEvents(filteredEvents);
+        
+        Navigation.NavigateTo($"/events");
     }
 
     }

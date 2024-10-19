@@ -5,35 +5,27 @@
     "Location": "Dublin",
     "Races": [
       {
-        "Name": "race1",
-        "StartTime": "2024-10-19T21:16:38.848286+01:00"
-      },
-      {
         "Name": "race5",
         "StartTime": "2024-10-19T21:16:38.848449+01:00"
       },
       {
-        "Name": "Race 5",
-        "StartTime": "2024-10-19T23:58:10.450187+01:00"
-      },
-      {
-        "Name": "Race 4",
-        "StartTime": "2024-10-19T23:58:39.098238+01:00"
-      },
-      {
-        "Name": "Race 5",
-        "StartTime": "2024-10-19T23:58:39.09824+01:00"
-      },
-      {
-        "Name": "Race 6",
-        "StartTime": "2024-10-20T00:30:52.416404+01:00"
+        "Name": "Race 7",
+        "StartTime": "2024-10-20T00:32:17.467312+01:00"
       },
       {
         "Name": "Race 7",
-        "StartTime": "2024-10-20T00:32:17.467312+01:00"
+        "StartTime": "2024-10-20T00:35:59.446142+01:00"
+      },
+      {
+        "Name": "Race 5",
+        "StartTime": "2024-10-20T00:38:33.969109+01:00"
+      },
+      {
+        "Name": "Race 8",
+        "StartTime": "2024-10-20T00:38:36.987087+01:00"
       }
     ],
-    "NumRaces": 7
+    "NumRaces": 5
   },
   {
     "Id": 11,
@@ -58,13 +50,6 @@
       }
     ],
     "NumRaces": 4
-  },
-  {
-    "Id": 12,
-    "Name": null,
-    "Location": null,
-    "Races": [],
-    "NumRaces": 0
   },
   {
     "Id": 25,
@@ -202,22 +187,6 @@
     "Id": 34,
     "Name": "Grange Derby",
     "Location": "Sligo",
-    "Races": [
-      {
-        "Name": "race1",
-        "StartTime": "2024-10-19T00:15:21.671541+01:00"
-      },
-      {
-        "Name": "race2",
-        "StartTime": "2024-10-19T00:15:21.671546+01:00"
-      }
-    ],
-    "NumRaces": 2
-  },
-  {
-    "Id": 35,
-    "Name": "Dundalk Derby",
-    "Location": "Louth",
     "Races": [
       {
         "Name": "race1",
