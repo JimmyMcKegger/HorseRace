@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HorseRace.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -42,7 +42,7 @@ namespace HorseRace.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Race",
+                name: "Races",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -53,9 +53,9 @@ namespace HorseRace.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Race", x => x.Id);
+                    table.PrimaryKey("PK_Races", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Race_Events_EventId",
+                        name: "FK_Races_Events_EventId",
                         column: x => x.EventId,
                         principalTable: "Events",
                         principalColumn: "Id",
@@ -63,7 +63,7 @@ namespace HorseRace.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Horse",
+                name: "Horses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -73,22 +73,22 @@ namespace HorseRace.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Horse", x => x.Id);
+                    table.PrimaryKey("PK_Horses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Horse_Race_RaceId",
+                        name: "FK_Horses_Races_RaceId",
                         column: x => x.RaceId,
-                        principalTable: "Race",
+                        principalTable: "Races",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Horse_RaceId",
-                table: "Horse",
+                name: "IX_Horses_RaceId",
+                table: "Horses",
                 column: "RaceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Race_EventId",
-                table: "Race",
+                name: "IX_Races_EventId",
+                table: "Races",
                 column: "EventId");
         }
 
@@ -96,13 +96,13 @@ namespace HorseRace.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Horse");
+                name: "Horses");
 
             migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Race");
+                name: "Races");
 
             migrationBuilder.DropTable(
                 name: "Events");

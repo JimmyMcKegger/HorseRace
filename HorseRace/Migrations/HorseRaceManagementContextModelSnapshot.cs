@@ -56,7 +56,7 @@ namespace HorseRace.Migrations
 
                     b.HasIndex("RaceId");
 
-                    b.ToTable("Horse");
+                    b.ToTable("Horses");
                 });
 
             modelBuilder.Entity("HorseRace.Models.Race", b =>
@@ -79,7 +79,7 @@ namespace HorseRace.Migrations
 
                     b.HasIndex("EventId");
 
-                    b.ToTable("Race");
+                    b.ToTable("Races");
                 });
 
             modelBuilder.Entity("HorseRace.Models.User", b =>

@@ -483,6 +483,7 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
+# Database files
 HorseRace/Data/users.json
-horseRcae.db
-horseRace.*
+HorseRace/Data/horseRcae.db
+HorseRace/Data/horseRace.*

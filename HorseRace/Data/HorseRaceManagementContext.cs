@@ -17,4 +17,8 @@ public class HorseRaceManagementContext : DbContext
     {
 
     }
+    
+    // TODO: seed data for owner/ manager accounts
+    // https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding#model-seed-data
+    
 }

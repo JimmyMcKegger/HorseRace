@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HorseRace.Migrations
 {
     [DbContext(typeof(HorseRaceManagementContext))]
-    [Migration("20241020160457_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241020162715_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,7 +59,7 @@ namespace HorseRace.Migrations
 
                     b.HasIndex("RaceId");
 
-                    b.ToTable("Horse");
+                    b.ToTable("Horses");
                 });
 
             modelBuilder.Entity("HorseRace.Models.Race", b =>
@@ -82,7 +82,7 @@ namespace HorseRace.Migrations
 
                     b.HasIndex("EventId");
 
-                    b.ToTable("Race");
+                    b.ToTable("Races");
                 });
 
             modelBuilder.Entity("HorseRace.Models.User", b =>
