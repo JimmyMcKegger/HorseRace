@@ -5,23 +5,23 @@
     "Location": "Dublin",
     "Races": [
       {
-        "Name": "asdf",
+        "Name": "Race 1",
         "StartTime": "2024-10-24T07:20:00"
       },
       {
-        "Name": "Race 7",
+        "Name": "Race 2",
         "StartTime": "2024-10-20T00:32:17.467312+01:00"
       },
       {
-        "Name": "Race 7",
+        "Name": "Race 3",
         "StartTime": "2024-10-20T00:35:59.446142+01:00"
       },
       {
-        "Name": "Race 5",
+        "Name": "Race 4",
         "StartTime": "2024-10-20T00:38:33.969109+01:00"
       },
       {
-        "Name": "Race 8",
+        "Name": "Race 5",
         "StartTime": "2024-10-20T00:38:36.987087+01:00"
       }
     ],

@@ -5,48 +5,15 @@ namespace HorseRace.Models;
 public class Event
 {
     private static readonly string EventFilePath = "Data/events.json";
+
     // find the biggest id and increment from there
     private static int eventCount = LoadEvents().Any() ? LoadEvents().Count : 0;
 
     // Fields 
     private int id;
-    private string name;
     private string location;
+    private string name;
     private List<Race> races;
-
-    // Getters and setter properties
-    public int Id { get; set; }
-
-    private static int EventCount
-    {
-        get => eventCount;
-        set => eventCount = eventCount + value;
-    }
-
-    public string Name { get; set; }
-    public string Location { get; set; }
-    public List<Race> Races { get; set; }
-    public int NumRaces
-    {
-        get => Races.Count;
-        set
-        {
-            if (value > Races.Count)
-            {
-                for (int i = Races.Count; i < value; i++)
-                {
-                    Races.Add(new Race($"Race {i + 1}", DateTime.Now));
-                }
-            }
-            else if (value < Races.Count)
-            {
-                // Console.WriteLine("SLICING!");
-                // Console.WriteLine(Races.Count);
-                // Console.WriteLine(value);
-                Races.RemoveRange(value - 1, 1);
-            }
-        }
-    }
 
     // Constructors
     public Event() { }
@@ -60,16 +27,40 @@ public class Event
         IncrementEventCount();
     }
 
+    // Getters and setter properties
+    public int Id { get; set; }
+
+    private static int EventCount
+    {
+        get => eventCount;
+        set => eventCount = eventCount + value;
+    }
+
+    public string Name { get; set; }
+    public string Location { get; set; }
+    public List<Race> Races { get; set; }
+
+    public int NumRaces
+    {
+        get => Races.Count;
+        set
+        {
+            if (value > Races.Count)
+                for (var i = Races.Count; i < value; i++)
+                    Races.Add(new Race($"Race {i + 1}", DateTime.Now));
+            else if (value < Races.Count)
+                Races.RemoveRange(value - 1, 1);
+        }
+    }
+
 
     // Methods
-    public static void LogEventCount()
-    {
-        Console.WriteLine(EventCount);
-    }
+
     private static void IncrementEventCount()
     {
         EventCount++;
     }
+
     public static List<Event> TestEvents()
     {
         var town = new[]
@@ -89,9 +80,10 @@ public class Event
 
         return events;
     }
+
     public override string ToString()
     {
-        return $"<{GetType().Name}> {Id} '{Name}' in {Location}. {NumRaces} Race{(NumRaces == 1 ? "" : "s")}.";
+        return $"{Id}. '{Name}' in {Location}. {NumRaces} Race{(NumRaces == 1 ? "" : "s")}.";
     }
 
     public static void AddNew(Event newEvent)
@@ -100,29 +92,24 @@ public class Event
         allEvents.Add(newEvent);
         SaveEvents(allEvents);
     }
+
     public static void SaveEvents(List<Event> events)
     {
-        string jsonString = JsonConvert.SerializeObject(events, Formatting.Indented);
+        var jsonString = JsonConvert.SerializeObject(events, Formatting.Indented);
         File.WriteAllText(EventFilePath, jsonString);
     }
 
 
     public static List<Event> LoadEvents()
     {
-        string allText = File.ReadAllText(EventFilePath);
+        var allText = File.ReadAllText(EventFilePath);
         var eventList = JsonConvert.DeserializeObject<List<Event>>(allText);
         if (eventList != null)
         {
             var sortedEvents =
-                eventList.
-                OrderBy(e => e.Id).
-                ToList();
+                eventList.OrderBy(e => e.Id).ToList();
 
-            foreach (var e in eventList)
-            {
-                Console.WriteLine(e);
-            }
-
+            // foreach (var e in eventList) Console.WriteLine(e);
             return sortedEvents;
         }
 
