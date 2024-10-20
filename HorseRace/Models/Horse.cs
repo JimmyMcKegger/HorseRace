@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace HorseRace.Models;
 
 public class Horse
@@ -10,6 +12,7 @@ public class Horse
 
 
     // Constructor
+    public Horse() {}
     public Horse(int id, string name, DateOnly dob, int ownerId)
     {
         Id = id;
@@ -17,10 +20,12 @@ public class Horse
         DateOfBirth = dob;
         OwnerId = ownerId;
     }
+    
 
 
     // Getters and setter properties
-    public int Id { get; }
+    [Key]
+    public int Id { get; set;  }
     public string Name { get; set; }
     private DateOnly DateOfBirth { get; set; }
     private int OwnerId { get; set; }

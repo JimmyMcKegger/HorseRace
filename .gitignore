@@ -484,3 +484,5 @@ $RECYCLE.BIN/
 *.swp
 
 HorseRace/Data/users.json
+horseRcae.db
+horseRace.*

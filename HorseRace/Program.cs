@@ -5,10 +5,9 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // add db context
-builder.Services.AddDbContextFactory<HorseRaceManagementContext>(opts =>
-{
-    opts.UseSqlite(builder.Configuration.GetConnectionString("HorseRaceManagementContext"));
-});
+// https://www.youtube.com/watch?v=D8FWqT7Xvoo
+builder.Services.AddDbContext<HorseRaceManagementContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("HorseRaceManagementContext")));
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

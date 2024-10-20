@@ -1,202 +1,53 @@
 [
   {
-    "Id": 10,
-    "Name": "Westport Derby",
-    "Location": "Mayo",
-    "Races": [
-      {
-        "Name": "Race 1",
-        "StartTime": "2024-10-24T07:20:00"
-      },
-      {
-        "Name": "Race 2",
-        "StartTime": "2024-10-20T00:32:17.467312+01:00"
-      },
-      {
-        "Name": "Race 3",
-        "StartTime": "2024-10-20T00:35:59.446142+01:00"
-      },
-      {
-        "Name": "Race 5",
-        "StartTime": "2024-10-20T00:38:36.987087+01:00"
-      }
-    ],
-    "NumRaces": 4
-  },
-  {
-    "Id": 11,
-    "Name": "Carrick Derby",
-    "Location": "Leitrim",
-    "Races": [
-      {
-        "Name": "Race 1",
-        "StartTime": "2024-10-19T21:29:40.847611+01:00"
-      },
-      {
-        "Name": "Race 2",
-        "StartTime": "2024-10-19T21:29:40.847972+01:00"
-      },
-      {
-        "Name": "Race 3",
-        "StartTime": "2024-10-19T21:29:40.847985+01:00"
-      }
-    ],
-    "NumRaces": 3
-  },
-  {
-    "Id": 25,
-    "Name": "Boyle Derby",
-    "Location": "Roscommon",
-    "Races": [
-      {
-        "Name": "race1",
-        "StartTime": "2024-10-19T20:20:34.512425+01:00"
-      },
-      {
-        "Name": "race2",
-        "StartTime": "2024-10-19T20:20:34.51243+01:00"
-      },
-      {
-        "Name": "race3",
-        "StartTime": "2024-10-19T20:20:34.51243+01:00"
-      }
-    ],
-    "NumRaces": 3
-  },
-  {
-    "Id": 27,
-    "Name": "Tallaght Derby",
-    "Location": "Dublin",
-    "Races": [
-      {
-        "Name": "race1",
-        "StartTime": "2024-10-19T00:15:21.671541+01:00"
-      },
-      {
-        "Name": "race2",
-        "StartTime": "2024-10-19T00:15:21.671546+01:00"
-      }
-    ],
-    "NumRaces": 2
-  },
-  {
-    "Id": 28,
-    "Name": "Mayfield Derby",
-    "Location": "Cork",
-    "Races": [
-      {
-        "Name": "Race 1",
-        "StartTime": "2024-10-19T00:15:21.671541+01:00"
-      },
-      {
-        "Name": "Race 2",
-        "StartTime": "2024-10-19T00:15:21.671546+01:00"
-      },
-      {
-        "Name": "Race 3",
-        "StartTime": "2024-10-20T11:32:17.472313+01:00"
-      }
-    ],
-    "NumRaces": 3
-  },
-  {
-    "Id": 29,
-    "Name": "Oranmore Derby",
-    "Location": "Galway",
-    "Races": [
-      {
-        "Name": "race1",
-        "StartTime": "2024-10-19T00:15:21.671541+01:00"
-      },
-      {
-        "Name": "race2",
-        "StartTime": "2024-10-19T00:15:21.671546+01:00"
-      }
-    ],
-    "NumRaces": 2
-  },
-  {
-    "Id": 30,
-    "Name": "Adare Derby",
+    "Id": 1,
+    "Name": "Limerick Derby",
     "Location": "Limerick",
     "Races": [
       {
-        "Name": "race1",
-        "StartTime": "2024-10-19T00:15:21.671541+01:00"
+        "Id": 1320120475,
+        "Name": "Race 1",
+        "StartTime": "2024-10-20T16:56:03.644284+01:00",
+        "Horses": null,
+        "EventId": 1
       },
       {
-        "Name": "race2",
-        "StartTime": "2024-10-19T00:15:21.671546+01:00"
+        "Id": 663956793,
+        "Name": "Race 2",
+        "StartTime": "2024-10-20T17:03:31.82858+01:00",
+        "Horses": null,
+        "EventId": 1
       }
     ],
     "NumRaces": 2
   },
   {
-    "Id": 31,
-    "Name": "Belfast Derby",
-    "Location": "Antrim",
+    "Id": 10,
+    "Name": "Newport Derby",
+    "Location": "Mayo",
     "Races": [
       {
-        "Name": "Race 1",
-        "StartTime": "2024-10-19T00:15:21.671541+01:00"
+        "Id": 1332272017,
+        "Name": "Race 5",
+        "StartTime": "2024-10-20T16:43:40.558606+01:00",
+        "Horses": null,
+        "EventId": 10
       },
       {
-        "Name": "Race 2",
-        "StartTime": "2024-10-19T00:15:21.671546+01:00"
+        "Id": 914314772,
+        "Name": "Race 5",
+        "StartTime": "2024-10-20T16:55:13.978249+01:00",
+        "Horses": null,
+        "EventId": 10
       },
       {
+        "Id": 1683042477,
         "Name": "Race 3",
-        "StartTime": "2024-10-20T11:22:40.054808+01:00"
+        "StartTime": "2024-10-20T17:03:31.828267+01:00",
+        "Horses": null,
+        "EventId": 10
       }
     ],
     "NumRaces": 3
-  },
-  {
-    "Id": 32,
-    "Name": "Derry Derby",
-    "Location": "Londonderry",
-    "Races": [
-      {
-        "Name": "race1",
-        "StartTime": "2024-10-19T00:15:21.671541+01:00"
-      },
-      {
-        "Name": "race2",
-        "StartTime": "2024-10-19T00:15:21.671546+01:00"
-      }
-    ],
-    "NumRaces": 2
-  },
-  {
-    "Id": 33,
-    "Name": "Dungarvan Derby",
-    "Location": "Waterford",
-    "Races": [
-      {
-        "Name": "race1",
-        "StartTime": "2024-10-19T00:15:21.671541+01:00"
-      },
-      {
-        "Name": "race2",
-        "StartTime": "2024-10-19T00:15:21.671546+01:00"
-      }
-    ],
-    "NumRaces": 2
-  },
-  {
-    "Id": 34,
-    "Name": "Grange Derby",
-    "Location": "Sligo",
-    "Races": [
-      {
-        "Name": "race1",
-        "StartTime": "2024-10-19T00:15:21.671541+01:00"
-      },
-      {
-        "Name": "race2",
-        "StartTime": "2024-10-19T00:15:21.671546+01:00"
-      }
-    ],
-    "NumRaces": 2
   }
 ]

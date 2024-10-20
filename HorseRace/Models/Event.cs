@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
 namespace HorseRace.Models;
@@ -18,16 +19,27 @@ public class Event
     // Constructors
     public Event() { }
 
-    public Event(string name, string location, List<Race> races)
+    public Event(string name, string location, int numRaces = 0)
     {
         Id = EventCount;
         Name = name;
         Location = location;
+        races = new List<Race>();
+        if (numRaces > 0)
+        {
+            Race race;
+            for (int i = 0; i < numRaces; i++)
+            {
+                race = new Race($"Race {i + 1}", DateTime.Now, EventCount);
+                races.Add(race);
+            }
+        }
         Races = races;
         IncrementEventCount();
     }
 
     // Getters and setter properties
+    [Key]
     public int Id { get; set; }
 
     private static int EventCount
@@ -47,7 +59,7 @@ public class Event
         {
             if (value > Races.Count)
                 for (var i = Races.Count; i < value; i++)
-                    Races.Add(new Race($"Race {i + 1}", DateTime.Now));
+                    Races.Add(new Race($"Race {i + 1}", DateTime.Now, this.Id));
             else if (value < Races.Count)
                 Races.RemoveRange(value - 1, 1);
         }
@@ -55,30 +67,9 @@ public class Event
 
 
     // Methods
-
     private static void IncrementEventCount()
     {
         EventCount++;
-    }
-
-    public static List<Event> TestEvents()
-    {
-        var town = new[]
-            { "Tallaght", "Mayfield", "Oranmore", "Adare", "Belfast", "Derry", "Dungarvan", "Grange", "Dundalk" };
-        var locations = new[]
-            { "Dublin", "Cork", "Galway", "Limerick", "Antrim", "Londonderry", "Waterford", "Sligo", "Louth" };
-        var events = new List<Event>();
-
-        var testRaces = new List<Race>();
-        var raceOne = new Race("race1", DateTime.Now);
-        var raceTwo = new Race("race2", DateTime.Now);
-        testRaces.Add(raceOne);
-        testRaces.Add(raceTwo);
-
-        // TODO: refactor with LINQ
-        for (var i = 0; i < locations.Length; i++) events.Add(new Event($"{town[i]} Derby", locations[i], testRaces));
-
-        return events;
     }
 
     public override string ToString()
