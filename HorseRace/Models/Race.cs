@@ -6,10 +6,6 @@ public class Race
     private string name;
     private DateTime startTime;
 
-    // Getters and setter properties
-    public string Name { get; set; }
-    public DateTime StartTime { get; set; }
-
     // Constructors
     public Race() { }
 
@@ -18,6 +14,12 @@ public class Race
         Name = name;
         StartTime = startTime;
     }
+
+    // Getters and setter properties
+    public string Name { get; set; }
+    public DateTime StartTime { get; set; }
+
+    public List<Horse> Horses { get; set; }
 
     // Methods
     public override string ToString()

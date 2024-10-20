@@ -2,7 +2,7 @@
   {
     "Id": 10,
     "Name": "Westport Derby",
-    "Location": "Dublin",
+    "Location": "Mayo",
     "Races": [
       {
         "Name": "Race 1",
@@ -17,15 +17,11 @@
         "StartTime": "2024-10-20T00:35:59.446142+01:00"
       },
       {
-        "Name": "Race 4",
-        "StartTime": "2024-10-20T00:38:33.969109+01:00"
-      },
-      {
         "Name": "Race 5",
         "StartTime": "2024-10-20T00:38:36.987087+01:00"
       }
     ],
-    "NumRaces": 5
+    "NumRaces": 4
   },
   {
     "Id": 11,
@@ -33,35 +29,19 @@
     "Location": "Leitrim",
     "Races": [
       {
-        "Name": "race1",
+        "Name": "Race 1",
         "StartTime": "2024-10-19T21:29:40.847611+01:00"
       },
       {
-        "Name": "race2",
+        "Name": "Race 2",
         "StartTime": "2024-10-19T21:29:40.847972+01:00"
       },
       {
-        "Name": "race3",
-        "StartTime": "2024-10-19T21:29:40.847978+01:00"
-      },
-      {
-        "Name": "race4",
+        "Name": "Race 3",
         "StartTime": "2024-10-19T21:29:40.847985+01:00"
       }
     ],
-    "NumRaces": 4
-  },
-  {
-    "Id": 13,
-    "Name": "asdf",
-    "Location": "asdf",
-    "Races": [
-      {
-        "Name": "Race 1",
-        "StartTime": "2024-10-20T01:07:33.72305+01:00"
-      }
-    ],
-    "NumRaces": 1
+    "NumRaces": 3
   },
   {
     "Id": 25,
@@ -105,15 +85,19 @@
     "Location": "Cork",
     "Races": [
       {
-        "Name": "race1",
+        "Name": "Race 1",
         "StartTime": "2024-10-19T00:15:21.671541+01:00"
       },
       {
-        "Name": "race2",
+        "Name": "Race 2",
         "StartTime": "2024-10-19T00:15:21.671546+01:00"
+      },
+      {
+        "Name": "Race 3",
+        "StartTime": "2024-10-20T11:32:17.472313+01:00"
       }
     ],
-    "NumRaces": 2
+    "NumRaces": 3
   },
   {
     "Id": 29,
@@ -153,15 +137,19 @@
     "Location": "Antrim",
     "Races": [
       {
-        "Name": "race1",
+        "Name": "Race 1",
         "StartTime": "2024-10-19T00:15:21.671541+01:00"
       },
       {
-        "Name": "race2",
+        "Name": "Race 2",
         "StartTime": "2024-10-19T00:15:21.671546+01:00"
+      },
+      {
+        "Name": "Race 3",
+        "StartTime": "2024-10-20T11:22:40.054808+01:00"
       }
     ],
-    "NumRaces": 2
+    "NumRaces": 3
   },
   {
     "Id": 32,

@@ -12,24 +12,14 @@
     <div class="container">
         @foreach (var evnt in eventsList)
         {
-            <div class="event">
-                <p>@evnt</p>
-                <Races RaceList="@evnt.Races"></Races>
-                <p><a href="events/@evnt.Id">Edit</a></p>
-                <br/>
+            <div class="card" style="width:auto;">
+                <div class="card-body">
+                    <h5 class="card-title">@evnt</h5>
+                    <Races RaceList="@evnt.Races"></Races>
+                    <a href="events/@evnt.Id" class="btn btn-primary">Edit</a>
+                </div>
             </div>
-            <br/>
         }
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <button @onclick="UpdateEvents">Save</button>
-            </div>
-            <div class="col">
-                <button @onclick="LogEvents">Log</button>
-            </div>
-        </div>
     </div>
 }
 else
@@ -38,16 +28,17 @@ else
 }
 
 @code {
-    private List<Event> eventsList = Event.LoadEvents();
+    private readonly List<Event> eventsList = Event.LoadEvents();
+
     private void UpdateEvents()
     {
         Console.WriteLine("Saving!");
         Event.SaveEvents(eventsList);
     }
-    
+
     private void LogEvents()
     {
         Event.LoadEvents();
     }
-    
+
 }
