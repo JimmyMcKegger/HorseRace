@@ -22,6 +22,6 @@ public class Race
     // Methods
     public override string ToString()
     {
-        return $"<{GetType().Name}> '{Name}' at: {StartTime}";
+        return $"{Name} at: {StartTime}";
     }
 }

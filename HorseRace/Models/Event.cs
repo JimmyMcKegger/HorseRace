@@ -26,7 +26,27 @@ public class Event
     public string Name { get; set; }
     public string Location { get; set; }
     public List<Race> Races { get; set; }
-    public int NumRaces => Races.Count;
+    public int NumRaces
+    {
+        get => Races.Count;
+        set
+        {
+            if (value > Races.Count)
+            {
+                for (int i = Races.Count; i < value; i++)
+                {
+                    Races.Add(new Race($"Race {i + 1}", DateTime.Now));
+                }
+            }
+            else if (value < Races.Count)
+            {
+                // Console.WriteLine("SLICING!");
+                // Console.WriteLine(Races.Count);
+                // Console.WriteLine(value);
+                Races.RemoveRange(value - 1, 1);
+            }
+        }
+    }
 
     // Constructors
     public Event() { }
@@ -93,15 +113,16 @@ public class Event
         var eventList = JsonConvert.DeserializeObject<List<Event>>(allText);
         if (eventList != null)
         {
-            var sortedEvents = eventList.
+            var sortedEvents =
+                eventList.
                 OrderBy(e => e.Id).
                 ToList();
-            
+
             foreach (var e in eventList)
             {
                 Console.WriteLine(e);
             }
-            // Console.WriteLine($"{eventList.Count} events loaded.");
+
             return sortedEvents;
         }
 
