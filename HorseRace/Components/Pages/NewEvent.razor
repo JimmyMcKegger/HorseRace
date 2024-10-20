@@ -40,14 +40,8 @@
 
     private void AddEvent()
     {
-        var racesToInclude = new List<Race>();
-        Race race;
-        for (int i = 0; i < eventNumRaces; i++)
-        {
-            race = new Race($"Race {i + 1}", DateTime.Now);
-            racesToInclude.Add(race);
-        }
-        Event.AddNew(new Event(eventName, eventLocation, racesToInclude));
+        Event.AddNew(new Event(eventName, eventLocation, eventNumRaces));
+        
         allEvents = Event.LoadEvents();
         LogCount();
         // redirect to index view
