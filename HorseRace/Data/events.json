@@ -5,8 +5,8 @@
     "Location": "Dublin",
     "Races": [
       {
-        "Name": "race5",
-        "StartTime": "2024-10-19T21:16:38.848449+01:00"
+        "Name": "asdf",
+        "StartTime": "2024-10-24T07:20:00"
       },
       {
         "Name": "Race 7",
@@ -50,6 +50,18 @@
       }
     ],
     "NumRaces": 4
+  },
+  {
+    "Id": 13,
+    "Name": "asdf",
+    "Location": "asdf",
+    "Races": [
+      {
+        "Name": "Race 1",
+        "StartTime": "2024-10-20T01:07:33.72305+01:00"
+      }
+    ],
+    "NumRaces": 1
   },
   {
     "Id": 25,

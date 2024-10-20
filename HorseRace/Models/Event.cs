@@ -35,7 +35,7 @@ public class Event
             {
                 for (int i = Races.Count; i < value; i++)
                 {
-                    Races.Add(new Race($"Race {i + 1}", DateTime.Now)); 
+                    Races.Add(new Race($"Race {i + 1}", DateTime.Now));
                 }
             }
             else if (value < Races.Count)
@@ -113,7 +113,7 @@ public class Event
         var eventList = JsonConvert.DeserializeObject<List<Event>>(allText);
         if (eventList != null)
         {
-            var sortedEvents = 
+            var sortedEvents =
                 eventList.
                 OrderBy(e => e.Id).
                 ToList();
@@ -122,7 +122,7 @@ public class Event
             {
                 Console.WriteLine(e);
             }
-  
+
             return sortedEvents;
         }
 

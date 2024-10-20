@@ -1,0 +1,86 @@
+@page "/events/{id}/races"
+
+@if (currentEvent != null)
+{
+    <div class="container">
+            <div class="event">
+                <h3>@currentEvent.Name races:</h3>
+                <ul>
+                    @if (currentEvent.Races != null)
+                    {
+                        @foreach (var r in currentEvent.Races)
+                        {
+                            <h3>Name</h3>
+                            <input type="text" @bind="r.Name" class="form-control" required/>
+
+                            <h3>Location</h3>
+                            <input type="datetime-local" @bind="r.StartTime" class="form-control" required/>
+                        }
+                    }
+                </ul>
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    @onclick="BackToEvent">
+                    Back to Event
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    @onclick="SaveRaces">
+                    Save Races
+                </button>
+                <br/>
+            </div>
+            <br/>
+    </div>
+}
+else
+{
+    Console.WriteLine("No Event with th at ID");
+    <text>No races found</text>
+}
+
+@code {
+    [Parameter] public string Id { get; set; }
+    private Event? currentEvent;
+    private string PARENT_EVENT_PATH;
+    protected override void OnParametersSet()
+    {
+        int i = Int32.Parse(Id);
+        currentEvent = Event.GetEventById(i);
+        PARENT_EVENT_PATH = $"/events/{currentEvent.Id}";
+    }
+
+    
+    [Inject] NavigationManager Navigation { get; set; }
+    public void BackToEvent()
+    {
+        Navigation.NavigateTo(PARENT_EVENT_PATH);
+    }
+
+    public void SaveRaces()
+    {
+        // load all events
+        var allEvents = Event.LoadEvents();
+        
+        // find the saved version
+        int index = allEvents.FindIndex(e => e.Id == currentEvent.Id);
+        var updatedRaces = new List<Race>();
+        foreach (var r in currentEvent.Races)
+        {
+            updatedRaces.Add(r);
+        }
+        
+        // replace values with new ones
+        currentEvent.Races = updatedRaces;
+        allEvents[index].Races = updatedRaces;
+        
+        // save the whole list of events again
+        Event.SaveEvents(allEvents);
+        
+        // redirect
+        Navigation.NavigateTo("/events");
+    }
+
+}
