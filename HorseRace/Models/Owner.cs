@@ -3,7 +3,6 @@ namespace HorseRace.Models;
 public class Owner : User
 {
     // Fields
-
     private List<Horse> horses;
 
     // constructor
@@ -14,11 +13,24 @@ public class Owner : User
         Name = name;
         Email = email;
         Horses = new List<Horse>();
+        Role = UserRole.Owner;
     }
 
 
     // getter and setter
     public List<Horse> Horses { get; set; }
+
+    public static List<User> LoadOwners()
+    {
+        var userJson = LoadUsers();
+        if (userJson != null)
+        {
+            var allOwners = userJson.Where(u => u.Role == UserRole.Owner).ToList();
+            return allOwners;
+        }
+
+        return new List<User>();
+    }
 
 
     public void TestOwner()

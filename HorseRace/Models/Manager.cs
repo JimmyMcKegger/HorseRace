@@ -9,4 +9,16 @@ public class Manager : User
 
     // TODO: UpdateEvent methods
     // public Event UpdateEvent(string location, int numRaces)
+
+    public static List<User> LoadManagers()
+    {
+        var userJson = LoadUsers();
+        if (userJson != null)
+        {
+            var allManagers = userJson.Where(u => u.Role == UserRole.Manager).ToList();
+            return allManagers;
+        }
+
+        return new List<User>();
+    }
 }

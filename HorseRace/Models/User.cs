@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace HorseRace.Models;
 
-public abstract class User
+public class User
 {
     private static readonly string UserFilePath = "Data/users.json";
 
@@ -10,26 +10,29 @@ public abstract class User
     private string email;
     private int id;
     private string name;
+    private UserRole role;
 
 
     // Constructor
     public User() { }
 
-    public User(string name, string email)
+    public User(string name, string email, UserRole role)
     {
         Id = UserCount + 1;
         Name = name;
         Email = email;
+        Role = role;
     }
 
     // Getters and setter properties
     public int Id { get; set; }
     public string Name { get; set; }
     public string Email { get; set; }
+    public UserRole Role { get; set; }
 
     public override string ToString()
     {
-        return $"{GetType().Name} - Name: {Name} Email: {Email}";
+        return $"{Role}: {Name} - Email: {Email}";
     }
 
     public static void SaveUsers(List<User> users)
