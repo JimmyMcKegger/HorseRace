@@ -19,6 +19,7 @@ public class Owner : User
 
     // getter and setter
     public List<Horse> Horses { get; set; }
+    public string Name { get => base.Name; set => base.Name = value; }
 
     public static List<User> LoadOwners()
     {
@@ -32,6 +33,19 @@ public class Owner : User
         return new List<User>();
     }
 
+    public static List<Owner> LoadOwnersAsOwners()
+    {
+        List<User> allOwnersAsUsers = LoadOwners();
+        List<Owner> allOwnersAsOwners = new List<Owner>();
+        foreach (User o in allOwnersAsUsers)
+        {
+            Console.WriteLine(o);
+            allOwnersAsOwners.Add(o as Owner);
+        }
+
+        return allOwnersAsOwners;
+    }
+
 
     public void TestOwner()
     {
@@ -41,5 +55,14 @@ public class Owner : User
         var h = new Horse(1, "Ed", bday, ownerId);
 
         Console.WriteLine($"Owner: {owner1.Name}, Horses: {string.Join(", ", owner1.Horses)}");
+    }
+
+    public static Owner? GetOwnerById(int id)
+    {
+        var userJson = LoadOwners();
+        // cast User as Owner
+        var owner = userJson.Where(u => u.Id == id).FirstOrDefault() as Owner;
+
+        return owner;
     }
 }

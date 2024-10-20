@@ -21,4 +21,13 @@ public class Manager : User
 
         return new List<User>();
     }
+    
+    public static Manager? GetManagerById(int id)
+    {
+        var userJson = LoadManagers();
+        // cast User as Manager
+        var manager = userJson.Where(u => u.Id == id).FirstOrDefault() as Manager;
+
+        return manager;
+    }
 }
