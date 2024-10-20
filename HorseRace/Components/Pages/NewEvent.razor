@@ -1,4 +1,7 @@
 @page "/events/new"
+@using HorseRace.Data
+@inject HorseRaceManagementContext Context
+
 
 <PageTitle>New Event</PageTitle>
 
@@ -40,10 +43,16 @@
 
     private void AddEvent()
     {
-        Event.AddNew(new Event(eventName, eventLocation, eventNumRaces));
-        
+        var newEvent = new Event(eventName, eventLocation, eventNumRaces);
+        Event.AddNew(newEvent);
         allEvents = Event.LoadEvents();
-        LogCount();
+        SaveEvent(newEvent);
+    }
+
+    private async Task SaveEvent(Event newEvent)
+    {
+        Context.Events.Add(newEvent);
+        await Context.SaveChangesAsync();
         // redirect to index view
         Navigation.NavigateTo("/events");
     }

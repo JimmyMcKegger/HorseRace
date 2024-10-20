@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using HorseRace.Data;
 using Newtonsoft.Json;
 
 namespace HorseRace.Models;

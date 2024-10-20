@@ -22,6 +22,42 @@
     "NumRaces": 2
   },
   {
+    "Id": 2,
+    "Name": "Collooney Derby",
+    "Location": "Sligo",
+    "Races": [
+      {
+        "Id": 680542231,
+        "Name": "Race 1",
+        "StartTime": "2024-10-20T20:40:59.644985+01:00",
+        "Horses": null,
+        "EventId": 2
+      },
+      {
+        "Id": 1229715946,
+        "Name": "Race 2",
+        "StartTime": "2024-10-20T20:40:59.646633+01:00",
+        "Horses": null,
+        "EventId": 2
+      },
+      {
+        "Id": 1202654731,
+        "Name": "Race 3",
+        "StartTime": "2024-10-20T20:40:59.646645+01:00",
+        "Horses": null,
+        "EventId": 2
+      },
+      {
+        "Id": 1883654635,
+        "Name": "Race 4",
+        "StartTime": "2024-10-20T20:41:15.213352+01:00",
+        "Horses": null,
+        "EventId": 2
+      }
+    ],
+    "NumRaces": 4
+  },
+  {
     "Id": 10,
     "Name": "Newport Derby",
     "Location": "Mayo",
