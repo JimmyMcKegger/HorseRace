@@ -3,7 +3,10 @@
     {
         @foreach (var r in races)
         {
-            <li>@r</li>
+            <a href="races/{@r.Id.ToString().Trim()}">
+                <li>@r</li>
+            </a>
+           
         }
     }
 </ul>
@@ -16,6 +19,10 @@
     protected override void OnParametersSet()
     {
         races = RaceList;
+        foreach (var hr in RaceList)
+        {
+            Console.WriteLine(hr);
+        }
     }
 
 }

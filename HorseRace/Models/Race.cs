@@ -28,13 +28,14 @@ public class Race
     public int Id { get; set; }
     public string Name { get; set; }
     public DateTime StartTime { get; set; }
-    public List<Horse> Horses { get; set; }
+    
     [ForeignKey("EventId")]
     public int EventId { get; set; }
 
     // Methods
     public override string ToString()
     {
-        return $"{Name} at: {StartTime}";
+        return $"{Name} at {StartTime.ToString("f")}";
     }
+   
 }

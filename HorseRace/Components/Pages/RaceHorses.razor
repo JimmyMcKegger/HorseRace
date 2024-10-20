@@ -1,0 +1,22 @@
+
+<PageTitle>Race Horses</PageTitle>
+
+<h1>Event Horses</h1>
+
+@code{
+    [Parameter]
+    public string Id { get; set; }
+    
+    private Race? currentRace;
+
+    protected override void OnParametersSet()
+    {
+        int i = Int32.Parse(Id);
+        Console.WriteLine(i);
+        currentRace = Race.GetRaceById(i);
+    }
+
+    [Inject] NavigationManager Navigation { get; set; }
+    
+
+}

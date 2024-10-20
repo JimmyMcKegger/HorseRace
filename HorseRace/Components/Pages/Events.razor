@@ -16,7 +16,7 @@
                 <div class="card-body">
                     <h5 class="card-title">@evnt</h5>
                     <Races RaceList="@evnt.Races"></Races>
-                    <a href="events/@evnt.Id" class="btn btn-primary">Edit</a>
+                    <a href="events/@evnt.Id" class="btn btn-secondary">Edit</a>
                 </div>
             </div>
         }
@@ -28,17 +28,19 @@ else
 }
 
 @code {
-    private readonly List<Event> eventsList = Event.LoadEvents();
+    
+    private List<Event> eventsList = Event.LoadEvents();
+    
+    // TODO: load from database
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     eventsList = await Context.Events.ToListAsync();
+    // }
 
     private void UpdateEvents()
     {
         Console.WriteLine("Saving!");
         Event.SaveEvents(eventsList);
     }
-
-    private void LogEvents()
-    {
-        Event.LoadEvents();
-    }
-
+    
 }

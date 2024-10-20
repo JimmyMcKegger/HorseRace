@@ -13,6 +13,25 @@ builder.Services.AddDbContext<HorseRaceManagementContext>(options =>
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+const string AuthScheme = "hr-auth";
+const string AuthCookie = "hr-auth";
+
+builder.Services.AddAuthentication()
+    .AddCookie(AuthScheme, options =>
+    {
+        options.Cookie.Name = AuthCookie;
+        options.LoginPath = "/auth/login";
+        options.AccessDeniedPath= "/auth/access-denied";
+        options.LogoutPath = "/auth/logout";
+
+        options.Cookie.httpOnly = true;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        options.Cookie.SameSite = SameSiteMode.Strict;
+        
+        options.Cookie.Expiration = TimeSpan.FromDays(1);
+    });
+// https://www.youtube.com/watch?v=oBofp1QeGVQ
+
 // add icons
 builder.Services.AddBlazorBootstrap();
 
@@ -29,6 +48,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
+app.UseAuthentication()
+    .UseAuthorization();
 app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
