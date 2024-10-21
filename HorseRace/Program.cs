@@ -1,5 +1,6 @@
 using HorseRace.Components;
 using HorseRace.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,9 +10,25 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<HorseRaceManagementContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("HorseRaceManagementContext")));
 
+builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
+
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddHttpContextAccessor();
+
+// for cookies
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/login"; 
+        options.LogoutPath = "/logout";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        options.SlidingExpiration = true;
+    });
 
 // add icons
 builder.Services.AddBlazorBootstrap();
@@ -29,6 +46,11 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapRazorPages();
+app.MapDefaultControllerRoute();
+
 app.UseAntiforgery();
 
 app.MapRazorComponents<App>()

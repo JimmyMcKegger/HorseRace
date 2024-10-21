@@ -46,9 +46,10 @@
         var newEvent = new Event(eventName, eventLocation, eventNumRaces);
         Event.AddNew(newEvent);
         allEvents = Event.LoadEvents();
-        SaveEvent(newEvent);
+        // SaveEvent(newEvent);
     }
 
+    // saves the event to the database
     private async Task SaveEvent(Event newEvent)
     {
         Context.Events.Add(newEvent);

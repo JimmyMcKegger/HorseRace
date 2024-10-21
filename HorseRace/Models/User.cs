@@ -12,17 +12,19 @@ public class User
     private int id;
     private string name;
     private UserRole role;
+    private string password;
 
 
     // Constructor
     public User() { }
 
-    public User(string name, string email, UserRole role)
+    public User(string name, string email, UserRole role, string password)
     {
         Id = UserCount + 1;
         Name = name;
         Email = email;
         Role = role;
+        Password = password;
     }
 
     // Getters and setter properties
@@ -31,6 +33,7 @@ public class User
     public string Name { get; set; }
     public string Email { get; set; }
     public UserRole Role { get; set; }
+    public string Password { get; set; }
 
     public override string ToString()
     {
@@ -56,5 +59,29 @@ public class User
         }
 
         return new List<User>();
+    }
+
+    public static User? GetUserByEmail(string email)
+    {
+        var users = LoadUsers();
+        var user = users.FirstOrDefault(u => u.Email == email);
+
+        if (user != null)
+        {
+            return user;
+        }
+
+        return null;
+
+    }
+
+    public static bool IsAuthenticated(string email, string password)
+    {
+        var user = GetUserByEmail(email);
+        if (user != null)
+        {
+            return user.Password == password;
+        }
+        return false;
     }
 }

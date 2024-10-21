@@ -9,5 +9,25 @@
     // TODO: if user if logged in show their account info and a logout button
 
     // Else login page
+    
+    [Inject]
+    public IHttpContextAccessor HttpContextAccessor { get; set; }
+
+    private string token;
+
+    protected override void OnInitialized()
+    {
+        
+        if (HttpContextAccessor.HttpContext != null)
+        {
+            token = HttpContextAccessor.HttpContext.Request.Cookies["access_token"];
+            Console.WriteLine($"Access TOKEN: {token}");
+            var user = User.GetUserByEmail(token);
+        }
+        else
+        {
+            token = "No token";
+        }
+    }
 
 }
