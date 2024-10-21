@@ -28,9 +28,9 @@
 <script>
     window.setCookie = (name, value) => {
         const d = new Date();
-        d.setTime(d.getTime() + (24 * 60 * 60 * 1000)); // 1 day
+        d.setTime(d.getTime() + (24 * 60 * 60 * 1000)); 
         let expires = "expires=" + d.toUTCString();
-        document.cookie = name + "=" + value + ";" + expires + ";path=/"; // Use parameters correctly
+        document.cookie = name + "=" + value + ";" + expires + ";path=/"; 
     };
 </script>
 
@@ -46,18 +46,25 @@
     {
         if (User.IsAuthenticated(userEmail, userPassword))
         {
-            // TODO: set cookie
-            // https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-8.0&viewFallbackFrom=aspnetcore-2.1&tabs=aspnetcore2x
-            Console.WriteLine("USER IS AUTHENTICATED");
+            var role = User.getRoleByAuthenticatedUser(userEmail);
+            // Console.WriteLine("USER IS AUTHENTICATED");
             await sendCookie("access_token", userEmail);
+            await sendCookie("access_role", $"{role}");
+            await updateforDom("updateNav");
+            
         }
-        Console.WriteLine("NOT AUTHENTICATED");
+        // Console.WriteLine("NOT AUTHENTICATED");
         BackHome();
     }
     
     public async Task sendCookie(string name, string value)
     {
-        await Js.InvokeVoidAsync("setCookie", "access_token", userEmail);
+        await Js.InvokeVoidAsync("setCookie", name, value);
+    }
+
+    public async Task updateforDom(string name)
+    {
+        await Js.InvokeVoidAsync(name);
     }
     
     // redirect

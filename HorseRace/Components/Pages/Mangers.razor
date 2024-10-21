@@ -1,7 +1,7 @@
 @page "/managers"
 
 <PageTitle>Managers</PageTitle>
-
+<div>
 <h1>Managers index</h1>
 
 <br>
@@ -27,7 +27,7 @@ else
     <p>No managers</p>
 }
 
-
+</div>
 @code {
 
     private readonly List<User> managerList = Manager.LoadManagers();

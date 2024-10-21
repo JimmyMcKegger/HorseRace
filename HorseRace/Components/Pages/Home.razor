@@ -11,9 +11,9 @@
     // Else login page
     
     [Inject]
-    public IHttpContextAccessor HttpContextAccessor { get; set; }
+    public IHttpContextAccessor? HttpContextAccessor { get; set; }
 
-    private string token;
+    private string? token;
 
     protected override void OnInitialized()
     {
@@ -23,6 +23,8 @@
             token = HttpContextAccessor.HttpContext.Request.Cookies["access_token"];
             Console.WriteLine($"Access TOKEN: {token}");
             var user = User.GetUserByEmail(token);
+            Console.WriteLine(user);
+  
         }
         else
         {

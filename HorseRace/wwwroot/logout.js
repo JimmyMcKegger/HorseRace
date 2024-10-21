@@ -9,3 +9,5 @@ const clearCookie = (name, value) => {
 }
 
 clearCookie("access_token", "");
+clearCookie("access_role", "");
+updateNav();
