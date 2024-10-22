@@ -5,7 +5,10 @@
 
 <h1>Logout</h1>
 
-<script src="logout.js"></script>
+<script>
+    clearCookie("access_token", "");
+    clearCookie("access_role", "");
+</script>
 @code {
     
 }

@@ -8,18 +8,25 @@
         "Id": 1320120475,
         "Name": "Race 1",
         "StartTime": "2024-10-20T16:56:03.644284+01:00",
-        "Horses": null,
-        "EventId": 1
+        "EventId": 1,
+        "Horses": null
       },
       {
         "Id": 663956793,
         "Name": "Race 2",
         "StartTime": "2024-10-20T17:03:31.82858+01:00",
-        "Horses": null,
-        "EventId": 1
+        "EventId": 1,
+        "Horses": null
+      },
+      {
+        "Id": 2024579768,
+        "Name": "Last Race",
+        "StartTime": "2024-10-26T18:35:00",
+        "EventId": 1,
+        "Horses": null
       }
     ],
-    "NumRaces": 2
+    "NumRaces": 3
   },
   {
     "Id": 2,
@@ -30,29 +37,29 @@
         "Id": 680542231,
         "Name": "Race 1",
         "StartTime": "2024-10-20T20:40:59.644985+01:00",
-        "Horses": null,
-        "EventId": 2
+        "EventId": 2,
+        "Horses": null
       },
       {
         "Id": 1229715946,
         "Name": "Race 2",
         "StartTime": "2024-10-20T20:40:59.646633+01:00",
-        "Horses": null,
-        "EventId": 2
+        "EventId": 2,
+        "Horses": null
       },
       {
         "Id": 1202654731,
         "Name": "Race 3",
         "StartTime": "2024-10-20T20:40:59.646645+01:00",
-        "Horses": null,
-        "EventId": 2
+        "EventId": 2,
+        "Horses": null
       },
       {
         "Id": 1883654635,
         "Name": "Race 4",
         "StartTime": "2024-10-20T20:41:15.213352+01:00",
-        "Horses": null,
-        "EventId": 2
+        "EventId": 2,
+        "Horses": null
       }
     ],
     "NumRaces": 4
@@ -66,22 +73,22 @@
         "Id": 1332272017,
         "Name": "Race 5",
         "StartTime": "2024-10-20T16:43:40.558606+01:00",
-        "Horses": null,
-        "EventId": 10
+        "EventId": 10,
+        "Horses": null
       },
       {
         "Id": 914314772,
         "Name": "Race 5",
         "StartTime": "2024-10-20T16:55:13.978249+01:00",
-        "Horses": null,
-        "EventId": 10
+        "EventId": 10,
+        "Horses": null
       },
       {
         "Id": 1683042477,
         "Name": "Race 3",
         "StartTime": "2024-10-20T17:03:31.828267+01:00",
-        "Horses": null,
-        "EventId": 10
+        "EventId": 10,
+        "Horses": null
       }
     ],
     "NumRaces": 3

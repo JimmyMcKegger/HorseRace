@@ -3,33 +3,49 @@
 @if (currentEvent != null)
 {
     <div class="container">
-            <div class="event">
-                <h3>@currentEvent.Name races:</h3>
-                <ul>
+            <div class="card" style="width:auto;">
+                <div class="card-header">
+                    <h3 class="card-title">@currentEvent.Name races:</h3>
+                </div>
+                <div class="card-body">
                     @if (currentEvent.Races != null)
                     {
                         @foreach (var r in currentEvent.Races)
                         {
-                            <h3>Name</h3>
-                            <input type="text" @bind="r.Name" class="form-control" required/>
-
-                            <h3>Location</h3>
-                            <input type="datetime-local" @bind="r.StartTime" class="form-control" required/>
+                            <div>
+                                <div>
+                                    <h3>Name</h3>
+                                    <input type="text" @bind="r.Name" class="form-control" required/>
+                                </div>
+                                
+                                <div >
+                                    <h3>Starting Time</h3>
+                                    <input type="datetime-local" @bind="r.StartTime" class="form-control" required/>
+                                </div>
+                                
+                            </div>
+                            <br/>
                         }
                     }
-                </ul>
-                <button
-                    type="button"
-                    class="btn btn-secondary"
-                    @onclick="BackToEvent">
-                    Back to Event
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-primary"
-                    @onclick="SaveRaces">
-                    Save Races
-                </button>
+                </div>
+                <div class="row ml-2">
+                    <div class="col-6">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            @onclick="BackToEvent">
+                            Back to Event
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            @onclick="SaveRaces">
+                            Save Races
+                        </button>
+                    </div>
+                </div>
                 <br/>
             </div>
             <br/>

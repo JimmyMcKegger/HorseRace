@@ -6,42 +6,42 @@
 }
 else
 {
-    <h3>Edit @currentEvent.Name</h3>
-
-    <br>
-    <br>
-
     <div class="container">
-        <h3>Name</h3>
-        <input type="text" @bind="currentEvent.Name" class="form-control" autofocus required/>
-
-        <h3>Location</h3>
-        <input type="text" @bind="currentEvent.Location" class="form-control" required/>
-
-        <div class="">
-            <h3>Number of races</h3>
-            <input type="number" @bind="currentEvent.NumRaces" class="form-control" min="1" max="50" placeholder="8" required>
+        <div class="card" style="width:auto;">
+            <div class="card-header">
+                <h3>Edit @currentEvent.Name</h3>
+            </div>
+            <br/>
+            <div class="card-body">
+                <h3>Name</h3>
+                <input type="text" @bind="currentEvent.Name" class="form-control" autofocus required/>
+                <br/>
+                <h3>Location</h3>
+                <input type="text" @bind="currentEvent.Location" class="form-control" required/>
+                <br/>
+                <h3>Number of races</h3>
+                <input type="number" @bind="currentEvent.NumRaces" class="form-control" min="1" max="50" placeholder="8" required>
+            <br/>
+            <button
+                type="button"
+                class="btn btn-secondary"
+                @onclick="BackButton">
+                Back to events
+            </button>
+            <button
+                type="button"
+                class="btn btn-primary"
+                @onclick="UpdateEvent">
+                Update Event
+            </button>
+                <button
+                    type="button"
+                    class="btn btn-danger"
+                    @onclick="DeleteEvent">
+                    Delete Event
+                </button>
+            </div>
         </div>
-        <br/>
-        <br/>
-        <button
-            type="button"
-            class="btn btn-secondary"
-            @onclick="BackButton">
-            Back to events
-        </button>
-        <button
-            type="button"
-            class="btn btn-primary"
-            @onclick="UpdateEvent">
-            Update Event
-        </button>
-        <button
-            type="button"
-            class="btn btn-danger"
-            @onclick="DeleteEvent">
-            Delete Event
-        </button>
     </div>
 }
 

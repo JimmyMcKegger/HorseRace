@@ -5,12 +5,11 @@
 </div>
 
 <input type="checkbox" title="Navigation menu" class="navbar-toggler"/>
-<script src="navControl.js"></script>
 
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
     <nav class="flex-column">
 
-        <div class="nav-item px-3" id="nav-events" style="display: none;">
+        <div class="nav-item px-3" id="nav-events" style="display: block;">
             <NavLink class="nav-link" href="events">
                 <span class="bi bi-calendar2-event" aria-hidden="true"></span> Events
             </NavLink>
@@ -23,7 +22,7 @@
         </div>
 
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="users" id="nav-users" style="display: none;">
+            <NavLink class="nav-link" href="users" id="nav-users" style="display: block;">
                 <span class="bi bi-person-fill-gear" aria-hidden="true"></span> All Users
             </NavLink>
         </div>
@@ -35,19 +34,19 @@
         </div>
 
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="owners">
+            <NavLink class="nav-link" href="owners" id="nav-owners" style="display: block;">
                 <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Horse Owners
             </NavLink>
         </div>
 
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="login" id="nav-login" style="display: flex;">
+            <NavLink class="nav-link" href="login" id="nav-login" style="display: block;">
                 <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Login
             </NavLink>
         </div>
 
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="logout" id="nav-logout" style="display: none;">
+            <NavLink class="nav-link" href="logout" id="nav-logout" style="display: block;">
                 <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Logout
             </NavLink>
         </div>

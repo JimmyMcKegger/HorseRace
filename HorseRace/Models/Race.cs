@@ -11,6 +11,7 @@ public class Race
     private string name;
     private DateTime startTime;
     private int eventId;
+    private HashSet<Horse> horses;
 
     // Constructors
     public Race() { }
@@ -21,6 +22,7 @@ public class Race
         Name = name;
         StartTime = startTime;
         EventId = eventId;
+        Horses = new HashSet<Horse>();
     }
 
     // Getters and setter properties
@@ -28,9 +30,10 @@ public class Race
     public int Id { get; set; }
     public string Name { get; set; }
     public DateTime StartTime { get; set; }
-    public List<Horse> Horses { get; set; }
+    
     [ForeignKey("EventId")]
     public int EventId { get; set; }
+    public HashSet<Horse> Horses { get; set; }
 
     // Methods
     public override string ToString()

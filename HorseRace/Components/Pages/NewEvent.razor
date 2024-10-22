@@ -5,29 +5,33 @@
 
 <PageTitle>New Event</PageTitle>
 
-<h1>New Event page</h1>
-
-<br/>
-
 <div class="container">
-    <h3>Name</h3>
-    <input type="text" @bind="eventName" class="form-control" autofocus required />
-    
-    <h3>Location</h3>
-    <input type="text" @bind="eventLocation" class="form-control" required />
-    
-    <div class="">
-        <h3>Number of races</h3>
-        <input type="number" @bind="eventNumRaces" class="form-control" min="1" max="50" placeholder="8" required>
+    <div class="card" style="width:auto;">
+        <div class="card-header">
+            <h2 class="card-title">New Event</h2>
+        </div>
+        <br/>
+        <div class="card-body">
+            <h3>Name</h3>
+            <input type="text" @bind="eventName" placeholder="Event name" class="form-control" autofocus required/>
+
+            <h3>Location</h3>
+            <input type="text" @bind="eventLocation" placeholder="Race track" class="form-control" required/>
+
+            <div class="">
+                <h3>Number of races</h3>
+                <input type="number" @bind="eventNumRaces" class="form-control" min="1" max="50" placeholder="3" required>
+            </div>
+            <br/>
+            <br/>
+            <button
+                type="button"
+                class="btn btn-primary"
+                @onclick="AddEvent">
+                Add Event
+            </button>
+        </div>
     </div>
-    <br/>
-    <br/>
-    <button
-        type="button"
-        class="btn btn-primary"
-        @onclick="AddEvent">
-        Add Event
-    </button>
 </div>
 
 @code {
@@ -43,6 +47,7 @@
 
     private void AddEvent()
     {
+        // TODO: catch invalid events
         var newEvent = new Event(eventName, eventLocation, eventNumRaces);
         Event.AddNew(newEvent);
         allEvents = Event.LoadEvents();
