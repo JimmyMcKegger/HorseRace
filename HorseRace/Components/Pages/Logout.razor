@@ -1,14 +1,34 @@
 @page "/logout"
-
+@inject IJSRuntime Js
 
 <PageTitle>Logout</PageTitle>
 
 <h1>Logout</h1>
 
-<script>
-    clearCookie("access_token", "");
-    clearCookie("access_role", "");
-</script>
+<button
+    type="button"
+    class="btn btn-danger"
+    @onclick="HandleLogout">
+    Logout
+</button>
+
 @code {
     
+    private async Task HandleLogout()
+    {
+        await ClearCookies("access_token");
+        await ClearCookies("access_role");
+        BackHome();
+    }
+    
+    private async Task ClearCookies(string name)
+    {
+        await Js.InvokeVoidAsync("clearCookie", name);
+    }
+    
+    [Inject] NavigationManager Navigation { get; set; }
+    private void BackHome()
+    {
+        Navigation.NavigateTo("/", true);
+    }
 }

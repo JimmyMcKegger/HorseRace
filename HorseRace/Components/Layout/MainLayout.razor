@@ -1,9 +1,12 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime Js
+
+
 <!-- TODO:  https://stackoverflow.com/questions/63715146/change-layout-in-blazor-page-based-on-url -->
 <script src="scripts.js"></script>
 <div class="page">
     <div class="sidebar">
-        <NavMenu/>
+        <NavMenu Role="@role"/>
     </div>
 
     <main>
@@ -22,3 +25,17 @@
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
+
+
+@code {
+    private string role = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            role = await Js.InvokeAsync<string>("getCookie", "access_role");
+            StateHasChanged();
+        }
+    }
+}

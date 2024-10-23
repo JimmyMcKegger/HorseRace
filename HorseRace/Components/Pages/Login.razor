@@ -50,14 +50,12 @@
             // Console.WriteLine("USER IS AUTHENTICATED");
             await sendCookie("access_token", userEmail);
             await sendCookie("access_role", $"{role}");
-            await updateforDom("updateNav");
-
         }
         // Console.WriteLine("NOT AUTHENTICATED");
         BackHome();
     }
     
-    public async Task sendCookie(string name, string value)
+    private async Task sendCookie(string name, string value)
     {
         await Js.InvokeVoidAsync("setCookie", name, value);
     }
@@ -70,6 +68,6 @@
     // redirect
     public void BackHome()
     {
-        Navigation.NavigateTo("/");
+        Navigation.NavigateTo("/", true);
     }
 }
