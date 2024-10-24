@@ -21,7 +21,7 @@ public class Manager : User
 
         return new List<User>();
     }
-    
+
     public static Manager? GetManagerById(int id)
     {
         var userJson = LoadManagers();

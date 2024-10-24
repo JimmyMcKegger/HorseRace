@@ -6,7 +6,7 @@
 <script src="scripts.js"></script>
 <div class="page">
     <div class="sidebar">
-        <NavMenu Role="@role"/>
+        <NavMenu LoggedInAs="@LoggedInAs" Role="@Role"/>
     </div>
 
     <main>
@@ -28,13 +28,18 @@
 
 
 @code {
-    private string role = "";
-
+    private string? loggedInAs;
+    private string? role;
+    
+    public string? LoggedInAs { get; set; }
+    public string? Role { get; set; }
+    
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            role = await Js.InvokeAsync<string>("getCookie", "access_role");
+            LoggedInAs = await Js.InvokeAsync<string>("getCookie", "access_token");
+            Role = await Js.InvokeAsync<string>("getCookie", "access_role");
             StateHasChanged();
         }
     }

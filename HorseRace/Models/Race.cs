@@ -30,7 +30,7 @@ public class Race
     public int Id { get; set; }
     public string Name { get; set; }
     public DateTime StartTime { get; set; }
-    
+
     [ForeignKey("EventId")]
     public int EventId { get; set; }
     public HashSet<Horse> Horses { get; set; }

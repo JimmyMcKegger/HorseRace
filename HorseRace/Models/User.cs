@@ -77,13 +77,13 @@ public class User
 
     public static UserRole? getRoleByAuthenticatedUser(string email)
     {
-       User? user = GetUserByEmail(email);
-       if (user != null)
-       {
-           return user.Role;
-       }
+        User? user = GetUserByEmail(email);
+        if (user != null)
+        {
+            return user.Role;
+        }
 
-       return null;
+        return null;
     }
 
     public static bool IsAuthenticated(string email, string password)
