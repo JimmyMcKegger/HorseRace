@@ -1,0 +1,53 @@
+@page "/race/{id}"
+@inject IJSRuntime Js
+
+<PageTitle>Race</PageTitle>
+
+
+@if (currentRace != null)
+{
+    <h1>@currentRace</h1>
+    <br>
+// TODO: add collapsable components
+// https://getbootstrap.com/docs/4.0/components/collapse/#accordion-example
+    <div class="container">
+        <div class="card" style="width:auto;">
+            <div class="card-header">
+                <h5 class="card-title">@currentRace.Name</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group list-group-flush">
+                    @if (currentRace.Horses != null && currentRace.Horses.Count > 0)
+                    {
+                        @foreach (var horse in currentRace.Horses)
+                        {
+                            <div class="list-group-item">
+                                <p>
+                                    @horse.Name
+                                </p>
+                            </div>
+                        }
+                    }
+                </div>
+                <a href="/events" class="btn btn-secondary">Back</a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+<p>Race nt found</p>
+}
+
+
+@code {
+
+    [Parameter] public string Id { get; set; }
+    private Race? currentRace;
+    protected override void OnParametersSet()
+    {
+        int i = Int32.Parse(Id);
+        currentRace = Race.GetRaceById(i);
+    }
+
+}

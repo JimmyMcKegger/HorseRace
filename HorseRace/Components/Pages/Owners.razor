@@ -1,4 +1,6 @@
 @page "/owners"
+@inject IJSRuntime Js
+
 
 <PageTitle>Owners</PageTitle>
 
@@ -27,4 +29,5 @@ else
 
 @code {
     private readonly List<User> ownerList = Owner.LoadOwners();
+    
 }

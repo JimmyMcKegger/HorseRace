@@ -1,4 +1,4 @@
-  
+
 <div class="card" style="width:auto;">
     <div class="card-header">
         <h4>Horse List</h4>
@@ -8,10 +8,10 @@
         <ul class="list-group list-group-flush">
             @foreach (var h in horseList)
             {
-                <li class="list-group-item">
-                    <h5>Name</h5>
-                    <p>@h.Name</p>
-                </li>
+            <li class="list-group-item">
+                <h5>Name</h5>
+                <p>@h.Name</p>
+            </li>
             }
         </ul>
     </div>
@@ -19,6 +19,6 @@
 
 
 @code {
-    [Parameter]
-    public List<Horse> horseList { get; set; }
+[Parameter]
+public List<Horse> horseList { get; set; }
 }

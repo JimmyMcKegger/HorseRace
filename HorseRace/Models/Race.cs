@@ -40,4 +40,24 @@ public class Race
     {
         return $"{Name} at: {StartTime}";
     }
+
+     public static Race? GetRaceById(int id)
+    {
+        var allEvents = Event.LoadEvents();
+        foreach (var evnt in allEvents)
+        {
+            if (evnt.NumRaces > 0)
+            {
+                foreach (var race in evnt.Races)
+                {
+                    if (race.Id == id)
+                    {
+                        return race;
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
 }
