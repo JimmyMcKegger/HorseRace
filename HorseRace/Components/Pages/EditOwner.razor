@@ -1,0 +1,115 @@
+@page "/owners/{id}"
+
+@if (CurrentOwner == null)
+{
+    <p>Owner not found!</p>
+}
+else
+{
+    <div class="container">
+        <div class="card" style="width:auto;">
+            <div class="card-header">
+                <h3>Edit @CurrentOwner.Name</h3>
+            </div>
+            <br/>
+            <div class="card-body">
+                <h4>Name</h4>
+                <p>@CurrentOwner.Name</p>
+                <br/>
+                <h4>Email</h4>
+                <p>@CurrentOwner.Email</p>
+                <br/>
+                <br/>
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    @onclick="BackButton">
+                    Back home
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    @onclick="ManageHorses">
+                    Manage Horses
+                </button>
+            </div>
+        </div>
+        <br/>
+        <Horses horseList=OwnedHorses></Horses>
+        <br/>
+        <div class="card" style="width:auto;">
+            <div class="card-header">
+                <h4>Add horse</h4>
+            </div>
+            <br/>
+            <div class="card-body">
+                <h3>Name</h3>
+                <input type="text" @bind="newHorseName" class="form-control" placeholder="Seabiscuit" required/>
+                <br/>
+                <h3>Date of birth</h3>
+                <input type="date" @bind="newHorseDateOfBirth" class="form-control" required/>
+                <br/>
+                <br/>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    @onclick="AddHorse">
+                    Add Horses
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+    public List<Horse> OwnedHorses { get; set; }
+    
+    public User? CurrentOwner;
+
+    protected override void OnParametersSet()
+    {
+        int i = Int32.Parse(Id);
+        Console.WriteLine(i);
+        CurrentOwner = User.GetUserById(i);
+        OwnedHorses = Horse.LoadUserHorses(CurrentOwner.Id);
+    }
+    
+    public string newHorseName = "";
+    public DateOnly newHorseDateOfBirth = new DateOnly(2023,01,01);
+    
+    [Inject] NavigationManager Navigation { get; set; }
+    
+    private void ManageHorses()
+    {
+        // load all events
+        List<User> allUsers = User.LoadUsers();
+        
+        // find the saved version
+        int index = allUsers.FindIndex(e => e.Id == CurrentOwner.Id);
+
+        if (index == -1)
+        {
+            Console.WriteLine("ERROR");
+            Navigation.NavigateTo($"/owners");
+        }
+        else
+        {
+            // redirect
+            Navigation.NavigateTo($"/owners/{CurrentOwner.Id}/horses");
+        }
+    }
+
+    private void BackButton()
+    {
+        Navigation.NavigateTo($"/");
+    }
+
+    public void AddHorse()
+    {
+        var newhorse = new Horse(newHorseName, newHorseDateOfBirth, CurrentOwner.Id);
+        Horse.AddNew(newhorse);
+        OwnedHorses = Horse.LoadUserHorses(CurrentOwner.Id);
+    }
+}

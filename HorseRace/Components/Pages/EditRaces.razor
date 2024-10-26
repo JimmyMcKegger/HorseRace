@@ -14,15 +14,31 @@
                         {
                             <div>
                                 <div>
-                                    <h3>Name</h3>
+                                    <h4>Name</h4>
                                     <input type="text" @bind="r.Name" class="form-control" required/>
                                 </div>
                                 
                                 <div >
-                                    <h3>Starting Time</h3>
+                                    <h4>Starting Time</h4>
                                     <input type="datetime-local" @bind="r.StartTime" class="form-control" required/>
                                 </div>
-                                
+
+                                @if (@r.Horses != null)
+                                {
+                                    <div>
+                                        <h4>Horses</h4>
+                                        <ul>
+                                            @foreach (var h in r.Horses)
+                                            {
+                                                <li>
+                                                    @h
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                }
+
+
                             </div>
                             <br/>
                         }
