@@ -1,6 +1,6 @@
 @page "/owners/{id}"
 
-@if (currentOwner == null)
+@if (CurrentOwner == null)
 {
     <p>Owner not found!</p>
 }
@@ -9,34 +9,52 @@ else
     <div class="container">
         <div class="card" style="width:auto;">
             <div class="card-header">
-                <h3>Edit @currentOwner.Name</h3>
+                <h3>Edit @CurrentOwner.Name</h3>
             </div>
             <br/>
             <div class="card-body">
-                <h3>Name</h3>
-                <input type="text" @bind="currentOwner.Name" class="form-control" autofocus required/>
+                <h4>Name</h4>
+                <p>@CurrentOwner.Name</p>
                 <br/>
-                <h3>Email</h3>
-                <input type="text" @bind="currentOwner.Email" class="form-control" required/>
+                <h4>Email</h4>
+                <p>@CurrentOwner.Email</p>
                 <br/>
-            <br/>
-            <button
-                type="button"
-                class="btn btn-secondary"
-                @onclick="BackButton">
-                Back home
-            </button>
+                <br/>
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    @onclick="BackButton">
+                    Back home
+                </button>
                 <button
                     type="button"
                     class="btn btn-primary"
                     @onclick="ManageHorses">
                     Manage Horses
                 </button>
+            </div>
+        </div>
+        <br/>
+        <Horses horseList=OwnedHorses></Horses>
+        <br/>
+        <div class="card" style="width:auto;">
+            <div class="card-header">
+                <h4>Add horse</h4>
+            </div>
+            <br/>
+            <div class="card-body">
+                <h3>Name</h3>
+                <input type="text" @bind="newHorseName" class="form-control" required/>
+                <br/>
+                <h3>Date of birth</h3>
+                <input type="date" @bind="newHorseDateOfBirth" class="form-control" required/>
+                <br/>
+                <br/>
                 <button
                     type="button"
                     class="btn btn-primary"
-                    @onclick="MakeHorse">
-                    Test Horses
+                    @onclick="AddHorse">
+                    Add Horses
                 </button>
             </div>
         </div>
@@ -46,15 +64,20 @@ else
 @code {
     [Parameter]
     public string Id { get; set; }
+    public List<Horse> OwnedHorses { get; set; }
     
-    private User? currentOwner;
+    public User? CurrentOwner;
 
     protected override void OnParametersSet()
     {
         int i = Int32.Parse(Id);
         Console.WriteLine(i);
-        currentOwner = User.GetUserById(i);
+        CurrentOwner = User.GetUserById(i);
+        OwnedHorses = Horse.LoadUserHorses(CurrentOwner.Id);
     }
+    
+    public string newHorseName = "Seabiscuit";
+    public DateOnly newHorseDateOfBirth = new DateOnly(2023,01,01);
     
     [Inject] NavigationManager Navigation { get; set; }
     
@@ -64,10 +87,8 @@ else
         List<User> allUsers = User.LoadUsers();
         
         // find the saved version
-        int index = allUsers.FindIndex(e => e.Id == currentOwner.Id);
-        Console.WriteLine($"INDEX: {index}");
+        int index = allUsers.FindIndex(e => e.Id == CurrentOwner.Id);
 
-        // replace values with new ones
         if (index == -1)
         {
             Console.WriteLine("ERROR");
@@ -75,19 +96,8 @@ else
         }
         else
         {
-            // Console.WriteLine($"INDEX: {index}");
-            
-            // build the updated owner
-            var updatedOwner = allUsers[index];
-            updatedOwner.Name = currentOwner.Name;
-            updatedOwner.Email = currentOwner.Email;
-
-            allUsers[index] = updatedOwner;
-
-            // save the whole list of events again
-            User.SaveUsers(allUsers);
             // redirect
-            Navigation.NavigateTo($"/owners/{currentOwner.Id}/horses");
+            Navigation.NavigateTo($"/owners/{CurrentOwner.Id}/horses");
         }
     }
 
@@ -96,18 +106,13 @@ else
         Navigation.NavigateTo($"/");
     }
 
-    private void DeleteOwner()
+    public void AddHorse()
     {
-        var allUsers = User.LoadUsers();
-        var filteredUsers = allUsers.Where(e => e.Id != currentOwner.Id).ToList();
-        User.SaveUsers(filteredUsers);
-        
-        Navigation.NavigateTo($"/");
-    }
-
-    public void MakeHorse()
-    {
-        Horse.TestHorse();
+        var allHorses = Horse.AllHorses();
+        var newhorse = new Horse(newHorseName, newHorseDateOfBirth, CurrentOwner.Id);
+        Horse.AddNew(newhorse);
+        // TODO: add confirmation popup
+        Navigation.NavigateTo($"/owners/{CurrentOwner.Id}/horses");
     }
 
 }

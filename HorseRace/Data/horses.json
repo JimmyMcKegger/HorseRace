@@ -1,8 +1,20 @@
 [
   {
+    "Id": 510999090,
+    "Name": "Seabiscuit",
+    "DateOfBirth": "2023-01-01",
+    "OwnerId": 2
+  },
+  {
     "Id": 572241094,
     "Name": "testHorse",
     "DateOfBirth": "2020-01-01",
+    "OwnerId": 2
+  },
+  {
+    "Id": 140251690,
+    "Name": "Thunder",
+    "DateOfBirth": "2020-06-12",
     "OwnerId": 2
   }
 ]

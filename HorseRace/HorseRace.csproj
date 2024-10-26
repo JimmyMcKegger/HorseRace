@@ -36,4 +36,13 @@
       <_ContentIncludedByDefault Remove="wwwroot\bootstrap\bootstrap.min.css.map" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Components\Pages\EditEvent.razor.js">
+        <DependentUpon>EditEvent.razor</DependentUpon>
+      </None>
+      <None Update="Components\Pages\Events.razor.js">
+        <DependentUpon>Events.razor</DependentUpon>
+      </None>
+    </ItemGroup>
+
 </Project>

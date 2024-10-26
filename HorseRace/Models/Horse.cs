@@ -36,13 +36,6 @@ public class Horse
     {
         return $"{Name}";
     }
-
-    public static void  TestHorse()
-    {
-        var newHorse = new Horse("testHorse", new DateOnly(2020, 01, 01), 2);
-        var horseList = new List<Horse> { newHorse };
-        SaveHorses(horseList);
-    }
     
     public static void SaveHorses(List<Horse> horses)
     {
@@ -79,5 +72,11 @@ public class Horse
             }
         }
         return new List<Horse>();
+    }
+    public static void AddNew(Horse newHorse)
+    {
+        var allHorses = AllHorses();
+        allHorses.Add(newHorse);
+        SaveHorses(allHorses);
     }
 }
