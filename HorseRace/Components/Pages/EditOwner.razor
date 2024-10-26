@@ -1,0 +1,113 @@
+@page "/owners/{id}"
+
+@if (currentOwner == null)
+{
+    <p>Owner not found!</p>
+}
+else
+{
+    <div class="container">
+        <div class="card" style="width:auto;">
+            <div class="card-header">
+                <h3>Edit @currentOwner.Name</h3>
+            </div>
+            <br/>
+            <div class="card-body">
+                <h3>Name</h3>
+                <input type="text" @bind="currentOwner.Name" class="form-control" autofocus required/>
+                <br/>
+                <h3>Email</h3>
+                <input type="text" @bind="currentOwner.Email" class="form-control" required/>
+                <br/>
+            <br/>
+            <button
+                type="button"
+                class="btn btn-secondary"
+                @onclick="BackButton">
+                Back home
+            </button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    @onclick="ManageHorses">
+                    Manage Horses
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    @onclick="MakeHorse">
+                    Test Horses
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+    
+    private User? currentOwner;
+
+    protected override void OnParametersSet()
+    {
+        int i = Int32.Parse(Id);
+        Console.WriteLine(i);
+        currentOwner = User.GetUserById(i);
+    }
+    
+    [Inject] NavigationManager Navigation { get; set; }
+    
+    private void ManageHorses()
+    {
+        // load all events
+        List<User> allUsers = User.LoadUsers();
+        
+        // find the saved version
+        int index = allUsers.FindIndex(e => e.Id == currentOwner.Id);
+        Console.WriteLine($"INDEX: {index}");
+
+        // replace values with new ones
+        if (index == -1)
+        {
+            Console.WriteLine("ERROR");
+            Navigation.NavigateTo($"/owners");
+        }
+        else
+        {
+            // Console.WriteLine($"INDEX: {index}");
+            
+            // build the updated owner
+            var updatedOwner = allUsers[index];
+            updatedOwner.Name = currentOwner.Name;
+            updatedOwner.Email = currentOwner.Email;
+
+            allUsers[index] = updatedOwner;
+
+            // save the whole list of events again
+            User.SaveUsers(allUsers);
+            // redirect
+            Navigation.NavigateTo($"/owners/{currentOwner.Id}/horses");
+        }
+    }
+
+    private void BackButton()
+    {
+        Navigation.NavigateTo($"/");
+    }
+
+    private void DeleteOwner()
+    {
+        var allUsers = User.LoadUsers();
+        var filteredUsers = allUsers.Where(e => e.Id != currentOwner.Id).ToList();
+        User.SaveUsers(filteredUsers);
+        
+        Navigation.NavigateTo($"/");
+    }
+
+    public void MakeHorse()
+    {
+        Horse.TestHorse();
+    }
+
+}

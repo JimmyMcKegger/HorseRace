@@ -2,7 +2,7 @@
 
 <PageTitle>Owners</PageTitle>
 
-<h1>Users index</h1>
+<h1>Owners page</h1>
 <br>
 @if (ownerList != null && ownerList?.Count > 0)
 {
@@ -14,7 +14,7 @@
         {
             <div class="card" style="width:auto;">
                 <div class="card-body">
-                    <h5 class="card-title">@owner</h5>
+                    <h5 class="card-title">@owner.Name</h5>
                     <a href="owners/@owner.Id" class="btn btn-primary">Edit</a>
                 </div>
             </div>
@@ -27,8 +27,5 @@ else
 }
 
 @code {
-
     private readonly List<User> ownerList = Owner.LoadOwners();
-
-
 }

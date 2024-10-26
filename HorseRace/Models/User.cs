@@ -60,6 +60,19 @@ public class User
 
         return new List<User>();
     }
+    
+    public static User? GetUserById(int id)
+    {
+        var users = LoadUsers();
+        var user = users.FirstOrDefault(u => u.Id == id);
+
+        if (user != null)
+        {
+            return user;
+        }
+
+        return null;
+    }
 
     public static User? GetUserByEmail(string email)
     {
@@ -72,7 +85,6 @@ public class User
         }
 
         return null;
-
     }
 
     public static UserRole? getRoleByAuthenticatedUser(string email)

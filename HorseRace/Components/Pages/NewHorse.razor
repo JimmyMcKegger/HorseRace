@@ -1,0 +1,69 @@
+@using HorseRace.Data
+@inject HorseRaceManagementContext Context
+
+
+<PageTitle>New Event</PageTitle>
+
+<div class="container">
+    <div class="card" style="width:auto;">
+        <div class="card-header">
+            <h2 class="card-title">New Event</h2>
+        </div>
+        <br/>
+        <div class="card-body">
+            <h3>Name</h3>
+            <input type="text" @bind="eventName" placeholder="Event name" class="form-control" autofocus required/>
+
+            <h3>Location</h3>
+            <input type="text" @bind="eventLocation" placeholder="Race track" class="form-control" required/>
+
+            <div class="">
+                <h3>Number of races</h3>
+                <input type="number" @bind="eventNumRaces" class="form-control" min="1" max="50" placeholder="3" required>
+            </div>
+            <br/>
+            <br/>
+            <button
+                type="button"
+                class="btn btn-primary"
+                @onclick="AddEvent">
+                Add Event
+            </button>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private string eventName;
+    private string eventLocation;
+    private int eventNumRaces;
+    
+    private string _now = DateTime.Now.ToString("s");
+
+    private List<Event> allEvents = Event.LoadEvents();
+    [Inject] NavigationManager Navigation { get; set; }
+
+    private void AddEvent()
+    {
+        // TODO: catch invalid events
+        var newEvent = new Event(eventName, eventLocation, eventNumRaces);
+        Event.AddNew(newEvent);
+        allEvents = Event.LoadEvents();
+        // SaveEvent(newEvent);
+    }
+
+    // saves the event to the database
+    private async Task SaveEvent(Event newEvent)
+    {
+        Context.Events.Add(newEvent);
+        await Context.SaveChangesAsync();
+        // redirect to index view
+        Navigation.NavigateTo("/events");
+    }
+
+    private void LogCount()
+    {
+        Console.WriteLine(allEvents.Count);
+    }
+}
