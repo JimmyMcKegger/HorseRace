@@ -75,7 +75,7 @@ public class Event
 
     public override string ToString()
     {
-        return $"{Id}. '{Name}' in {Location}. {NumRaces} Race{(NumRaces == 1 ? "" : "s")}.";
+        return $"{Id}. '{Name}' in {Location}";
     }
 
     public static void AddNew(Event newEvent)

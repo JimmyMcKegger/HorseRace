@@ -16,23 +16,5 @@
     "Name": "Seabiscuit",
     "DateOfBirth": "2023-01-01",
     "OwnerId": 2
-  },
-  {
-    "Id": 572241094,
-    "Name": "testHorse",
-    "DateOfBirth": "2020-01-01",
-    "OwnerId": 2
-  },
-  {
-    "Id": 1652939784,
-    "Name": "Maple",
-    "DateOfBirth": "2023-01-12",
-    "OwnerId": 2
-  },
-  {
-    "Id": 519484333,
-    "Name": "Tonto",
-    "DateOfBirth": "2019-10-30",
-    "OwnerId": 2
   }
 ]
