@@ -16,7 +16,6 @@ public class Owner : User
         Role = UserRole.Owner;
     }
 
-
     // getter and setter
     public List<Horse> Horses { get; set; }
     public string Name { get => base.Name; set => base.Name = value; }

@@ -16,12 +16,12 @@ public class Horse
     public Horse() { }
     public Horse(string name, DateOnly dob, int ownerId)
     {
-        Id = Math.Abs((name, dob, ownerId).GetHashCode());;
+        Id = Math.Abs((name, dob, ownerId).GetHashCode()); ;
         Name = name;
         DateOfBirth = dob;
         OwnerId = ownerId;
     }
-    
+
 
     // Getters and setter properties
     [Key]
@@ -36,13 +36,13 @@ public class Horse
     {
         return $"{Name}";
     }
-    
+
     public static void SaveHorses(List<Horse> horses)
     {
         var jsonString = JsonConvert.SerializeObject(horses, Formatting.Indented);
         File.WriteAllText(HorseFilePath, jsonString);
     }
-    
+
     public static List<Horse> AllHorses()
     {
         var allHorses = File.ReadAllText(HorseFilePath);
@@ -56,7 +56,7 @@ public class Horse
         }
         return new List<Horse>();
     }
-    
+
     public static List<Horse> LoadUserHorses(int id)
     {
         var allHorses = AllHorses();

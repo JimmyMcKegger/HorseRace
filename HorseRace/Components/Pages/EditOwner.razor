@@ -44,7 +44,7 @@ else
             <br/>
             <div class="card-body">
                 <h3>Name</h3>
-                <input type="text" @bind="newHorseName" class="form-control" required/>
+                <input type="text" @bind="newHorseName" class="form-control" placeholder="Seabiscuit" required/>
                 <br/>
                 <h3>Date of birth</h3>
                 <input type="date" @bind="newHorseDateOfBirth" class="form-control" required/>
@@ -76,7 +76,7 @@ else
         OwnedHorses = Horse.LoadUserHorses(CurrentOwner.Id);
     }
     
-    public string newHorseName = "Seabiscuit";
+    public string newHorseName = "";
     public DateOnly newHorseDateOfBirth = new DateOnly(2023,01,01);
     
     [Inject] NavigationManager Navigation { get; set; }
@@ -108,11 +108,8 @@ else
 
     public void AddHorse()
     {
-        var allHorses = Horse.AllHorses();
         var newhorse = new Horse(newHorseName, newHorseDateOfBirth, CurrentOwner.Id);
         Horse.AddNew(newhorse);
-        // TODO: add confirmation popup
-        Navigation.NavigateTo($"/owners/{CurrentOwner.Id}/horses");
+        OwnedHorses = Horse.LoadUserHorses(CurrentOwner.Id);
     }
-
 }

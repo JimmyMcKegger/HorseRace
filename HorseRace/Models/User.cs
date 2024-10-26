@@ -60,7 +60,7 @@ public class User
 
         return new List<User>();
     }
-    
+
     public static User? GetUserById(int id)
     {
         var users = LoadUsers();
