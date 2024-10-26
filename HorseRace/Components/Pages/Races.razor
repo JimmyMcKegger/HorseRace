@@ -1,23 +1,17 @@
-<ul>
-    @if (this.races != null && this.races.Count > 0)
+<div class="list-group list-group-flush">
+    @if (this.RaceList != null && this.RaceList.Count > 0)
     {
-        @foreach (var r in races)
+        @foreach (var r in RaceList)
         {
-            <li>@r</li>
+            <div class="list-group-item">
+                <a href="race/@r.Id">@r</a>
+            </div>
         }
     }
-</ul>
+</div>
 
 @code{
     [Parameter] public List<Race>? RaceList { get; set; }
-
-    private List<Race>? races;
-
-    protected override void OnParametersSet()
-    {
-        races = RaceList;
-    }
-
 }
     
     
