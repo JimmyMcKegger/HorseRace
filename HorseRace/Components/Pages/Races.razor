@@ -4,7 +4,12 @@
         @foreach (var r in RaceList)
         {
             <div class="list-group-item">
-                <a href="race/@r.Id">@r</a>
+                <p>
+                    <a href="race/@r.Id">
+                        @r.Name
+                    </a>
+                    at @r.StartTime.ToShortTimeString() on @r.StartTime.ToShortDateString()
+                </p>
             </div>
         }
     }

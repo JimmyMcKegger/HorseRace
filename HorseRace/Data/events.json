@@ -71,14 +71,14 @@
     "Races": [
       {
         "Id": 1332272017,
-        "Name": "Race 5",
+        "Name": "Race 1",
         "StartTime": "2024-10-20T16:43:40.558606+01:00",
         "EventId": 10,
         "Horses": null
       },
       {
         "Id": 914314772,
-        "Name": "Race 5",
+        "Name": "Race 2",
         "StartTime": "2024-10-20T16:55:13.978249+01:00",
         "EventId": 10,
         "Horses": null
