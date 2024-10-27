@@ -93,4 +93,18 @@ public class Horse
         return null;
     }
 
+    // override for HasSets to prevent duplicates
+    public override bool Equals(object? obj)
+    {
+        if (obj is Horse otherHorse)
+        {
+            return Id == otherHorse.Id;
+        }
+        return false;
+    }
+    
+    public override int GetHashCode()
+    {
+        return Id.GetHashCode();
+    }
 }

@@ -90,8 +90,7 @@ public class Event
         var jsonString = JsonConvert.SerializeObject(events, Formatting.Indented);
         File.WriteAllText(EventFilePath, jsonString);
     }
-
-
+    
     public static List<Event> LoadEvents()
     {
         var allText = File.ReadAllText(EventFilePath);
