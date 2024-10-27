@@ -40,7 +40,6 @@ else
     private async Task MakeEditable()
     {
         var role = await Js.InvokeAsync<string>("getCookie", "access_role");
-        Console.WriteLine($"ROLE: {role}");
          if (role == "Manager")
          {
              await Js.InvokeVoidAsync("ShowEditButtons");

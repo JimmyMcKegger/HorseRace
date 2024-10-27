@@ -5,30 +5,30 @@
     </div>
     <br/>
     <div class="card-body">
-        <ul class="list-group list-group-flush">
+        <div class="list-group list-group-flush">
             @if (HorseList != null && HorseList.Count > 0)
             {
                 @foreach (var h in HorseList)
                 {
-                    <li class="list-group-item">
+                    <div class="list-group-item">
                         <h5>Name</h5>
-                        <p>@h.Name</p>
-                    </li>
-                    @if (AddToRaceButtons)
-                    {
+                        <p><span class="font-weight-bold">@h.Name</span></p>
+                        @if (AddToRaceButtons)
+                        {
                         <button
                             type="button"
-                            class="btn btn-primary"
+                            class="btn btn-primary btn-sm"
                             @onclick="() => AddToRace(RaceId, h.Id)">
                             Add To Race
                         </button>
-                    }
+                        }
+                    </div>
+                   
                 }
             }
-        </ul>
+        </div>
     </div>
 </div>
-
 
 @code {
     [Parameter] 
@@ -44,16 +44,11 @@
 
     public void AddToRace(string raceId, int horseId)
     {
-        
         var raceNum = Int32.Parse(raceId);
-        Console.WriteLine(raceNum);
-        Console.WriteLine(horseId);
         if (raceNum > 0)
         {
-            Console.WriteLine("Adding Horse");
             Race.AddHorse(raceNum, horseId);
         }
-        
         Navigation.NavigateTo($"/events", true);
     }
 }

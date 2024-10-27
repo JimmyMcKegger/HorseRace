@@ -21,6 +21,12 @@
             "Name": "Thunder",
             "DateOfBirth": "2020-06-12",
             "OwnerId": 2
+          },
+          {
+            "Id": 510999090,
+            "Name": "Seabiscuit",
+            "DateOfBirth": "2023-01-01",
+            "OwnerId": 2
           }
         ]
       },

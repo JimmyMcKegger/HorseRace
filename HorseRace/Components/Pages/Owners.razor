@@ -8,12 +8,10 @@
 <br>
 @if (ownerList != null && ownerList?.Count > 0)
 {
-// TODO: add collapsable components
-// https://getbootstrap.com/docs/4.0/components/collapse/#accordion-example
     <div class="container">
         @foreach (var owner in ownerList)
         {
-            <div class="card" style="width:auto;">
+            <div class="card d-none" style="width:auto;" id=@owner.Id>
                 <div class="card-body">
                     <h5 class="card-title">@owner.Name</h5>
                     <a href="owners/@owner.Id" class="btn btn-primary">Edit</a>
@@ -29,5 +27,20 @@ else
 
 @code {
     private readonly List<User> ownerList = Owner.LoadOwners();
-    
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            Console.WriteLine("Showing Profiles");
+            ShowOnlyOwnProfile();
+        }
+    }
+    private async Task ShowOnlyOwnProfile()
+    {
+        var role = await Js.InvokeAsync<string>("getCookie", "access_role");
+        Console.WriteLine($"role: {role}");
+        var userEmail = await Js.InvokeAsync<string>("getCookie", "access_token");
+        var user = User.GetUserByEmail(userEmail);
+        await Js.InvokeVoidAsync("ShowOwnerProfile", role, user?.Id);
+    }
 }
