@@ -17,28 +17,24 @@
                                     <h4>Name</h4>
                                     <input type="text" @bind="r.Name" class="form-control" required/>
                                 </div>
-                                
                                 <div >
                                     <h4>Starting Time</h4>
                                     <input type="datetime-local" @bind="r.StartTime" class="form-control" required/>
                                 </div>
-
-                                @if (@r.Horses != null)
+                                @if (r.Horses != null && @r.Horses.Count > 0)
                                 {
-                                    <div>
-                                        <h4>Horses</h4>
-                                        <ul>
-                                            @foreach (var h in r.Horses)
-                                            {
-                                                <li>
-                                                    @h
-                                                </li>
-                                            }
-                                        </ul>
-                                    </div>
+                                    <Horses
+                                        HorseList=r.Horses.ToList()
+                                        Title="Scheduled Horses">
+                                    </Horses>
                                 }
-
-
+                                <div class="card" style="width:auto;">
+                                    <div class="card-header">
+                                        <h5 class="card-title">Upload Race Horses</h5>
+                                    </div>
+                                    <input type="file" accept="application/json">
+                                </div>
+                                <br/>
                             </div>
                             <br/>
                         }
@@ -83,7 +79,6 @@ else
         currentEvent = Event.GetEventById(i);
         PARENT_EVENT_PATH = $"/events/{currentEvent.Id}";
     }
-
     
     [Inject] NavigationManager Navigation { get; set; }
     public void BackToEvent()
@@ -103,16 +98,12 @@ else
         {
             updatedRaces.Add(r);
         }
-        
         // replace values with new ones
         currentEvent.Races = updatedRaces;
         allEvents[index].Races = updatedRaces;
-        
         // save the whole list of events again
         Event.SaveEvents(allEvents);
-        
         // redirect
         Navigation.NavigateTo(PARENT_EVENT_PATH);
     }
-
 }
