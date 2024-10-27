@@ -70,7 +70,7 @@ public class Race
     {
         var allEvents = Event.LoadEvents();
         var EventWithRace = Event.GetIndexOfEvent(updatedRace.EventId);
-        
+
         var currentEvent = allEvents[EventWithRace];
         for (int i = 0; i < currentEvent.Races.Count; i++)
         {
@@ -80,7 +80,7 @@ public class Race
                 Console.WriteLine($"{currentEvent.Races[i]} updated");
             }
         }
-        
+
         Event.UpdateEvents(currentEvent);
     }
 
@@ -103,7 +103,5 @@ public class Race
             }
             UpdateRaceInEvents(race);
         }
-        
-       
     }
 }

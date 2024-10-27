@@ -78,7 +78,7 @@ public class Horse
         allHorses.Add(newHorse);
         SaveHorses(allHorses);
     }
-    
+
     public static Horse? GetHorseById(int id)
     {
         var allHorses = AllHorses();
@@ -102,7 +102,7 @@ public class Horse
         }
         return false;
     }
-    
+
     public override int GetHashCode()
     {
         return Id.GetHashCode();

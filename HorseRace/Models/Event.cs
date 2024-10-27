@@ -90,7 +90,7 @@ public class Event
         var jsonString = JsonConvert.SerializeObject(events, Formatting.Indented);
         File.WriteAllText(EventFilePath, jsonString);
     }
-    
+
     public static List<Event> LoadEvents()
     {
         var allText = File.ReadAllText(EventFilePath);
@@ -125,22 +125,22 @@ public class Event
         var allEvents = LoadEvents();
         int index = allEvents.FindIndex(e => e.Id == EventId);
         return index;
-        
+
     }
 
     public static void UpdateEvents(Event updatedEvent)
     {
         var allEvents = LoadEvents();
         var index = GetIndexOfEvent(updatedEvent.Id);
-        
+
         allEvents[index].Name = updatedEvent.Name;
         allEvents[index].Location = updatedEvent.Location;
         allEvents[index].NumRaces = updatedEvent.NumRaces;
         allEvents[index].Races = updatedEvent.Races;
-        
+
         SaveEvents(allEvents);
     }
-    
+
     public static Event? GetEventByRaceId(int id)
     {
         var allEvents = LoadEvents();
