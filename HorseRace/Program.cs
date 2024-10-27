@@ -13,7 +13,6 @@ builder.Services.AddDbContext<HorseRaceManagementContext>(options =>
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();

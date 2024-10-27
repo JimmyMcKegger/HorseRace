@@ -32,7 +32,7 @@
                                     <div class="card-header">
                                         <h5 class="card-title">Upload Race Horses</h5>
                                     </div>
-                                    <input type="file" accept="application/json">
+                                    <InputFile OnChange="OnInputFileChange" accept=".json" />
                                 </div>
                                 <br/>
                             </div>
@@ -106,4 +106,43 @@ else
         // redirect
         Navigation.NavigateTo(PARENT_EVENT_PATH);
     }
+    
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+{
+    Console.WriteLine(e);
+    var file = e.File;
+    Console.WriteLine(file.Name);
+    Console.WriteLine(file.ContentType);
+    if (file != null)
+    {
+        try
+        {
+            string uploadedJson;
+            using (var stream = file.OpenReadStream())
+            using (var reader = new StreamReader(stream))
+            {
+                Console.WriteLine("Opened file.");
+                uploadedJson = await reader.ReadToEndAsync();
+                Console.WriteLine("Contains: " + uploadedJson);
+            }
+
+            var horseList = JsonConvert.DeserializeObject<List<Horse>>(uploadedJson);
+
+            if (horseList != null)
+            {
+                Console.WriteLine(horseList);
+            }
+            else
+            {
+                Console.WriteLine("No Content");
+            }
+        }
+        catch (Exception exctn)
+        {
+            Console.WriteLine(exctn);
+        }
+    }
+    
+}
+
 }
