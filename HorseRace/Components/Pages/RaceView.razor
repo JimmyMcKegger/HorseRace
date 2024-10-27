@@ -3,51 +3,94 @@
 
 <PageTitle>Race</PageTitle>
 
-
 @if (currentRace != null)
 {
-    <h1>@currentRace</h1>
-    <br>
-// TODO: add collapsable components
-// https://getbootstrap.com/docs/4.0/components/collapse/#accordion-example
-    <div class="container">
-        <div class="card" style="width:auto;">
-            <div class="card-header">
-                <h5 class="card-title">@currentRace.Name</h5>
+<h1>@currentRace</h1>
+<br>
+<div class="container">
+    <div class="card" style="width:auto;">
+        <div class="card-header">
+            <h5 class="card-title">@currentRace.Name</h5>
+        </div>
+        <div class="card-body">
+            <div class="list-group list-group-flush">
+                @if (currentRace.Horses != null && currentRace.Horses.Count > 0)
+                {
+                <Horses horseList=RaceHorses></Horses>
+                }
             </div>
-            <div class="card-body">
-                <div class="list-group list-group-flush">
-                    @if (currentRace.Horses != null && currentRace.Horses.Count > 0)
-                    {
-                        @foreach (var horse in currentRace.Horses)
-                        {
-                            <div class="list-group-item">
-                                <p>
-                                    @horse.Name
-                                </p>
-                            </div>
-                        }
-                    }
-                </div>
-                <a href="/events" class="btn btn-secondary">Back</a>
-            </div>
+            <a href="/events" class="btn btn-secondary">Back</a>
         </div>
     </div>
+    <br/>
+    @if (PageRole == UserRole.Owner)
+    {
+    <div class="card" style="width:auto;">
+        <div class="card-header">
+            <h5 class="card-title">Horses for @CurrentOwner.Name</h5>
+        </div>
+        <div class="card-body">
+            <div class="list-group list-group-flush">
+                <Horses horseList=OwnedHorses></Horses>
+            </div>
+            <a href="/events" class="btn btn-secondary">Back</a>
+        </div>
+    </div>
+    }
+    else if (PageRole == UserRole.Manager)
+    {
+    <div class="card" style="width:auto;">
+        <div class="card-header">
+            <h5 class="card-title">Race Upload</h5>
+        </div>
+        <input type="file" accept="application/json">
+    </div>
+    }
+</div>
 }
 else
 {
-<p>Race nt found</p>
+<p>Race not found</p>
 }
 
 
 @code {
 
     [Parameter] public string Id { get; set; }
-    private Race? currentRace;
-    protected override void OnParametersSet()
+    public Race? currentRace;
+    public List<Horse>? RaceHorses { get; set; }
+    public List<Horse>? OwnedHorses { get; set; }
+    public User? CurrentOwner { get; set; }
+    private UserRole PageRole { get; set; }
+
+    protected override async Task OnParametersSetAsync()
     {
         int i = Int32.Parse(Id);
         currentRace = Race.GetRaceById(i);
-    }
+        if (currentRace != null)
+        {
+            RaceHorses = currentRace.Horses?.ToList();
+        }
 
+        var role = await Js.InvokeAsync<string>("getCookie", "access_role");
+        Console.WriteLine($"ROLE: {role}");
+
+        PageRole = Enum.TryParse(role, true, out UserRole parsedRole) ? parsedRole : UserRole.EventGoer;
+        Console.WriteLine($"PageRole: {PageRole}");
+
+
+        if (PageRole == UserRole.Owner)
+        {
+        var userEmail = await Js.InvokeAsync<string>("getCookie", "access_token");
+        Console.WriteLine($"UserEmail: {userEmail}");
+        CurrentOwner = User.GetUserByEmail(userEmail);
+
+        if (CurrentOwner != null)
+        {
+            OwnedHorses = Horse.LoadUserHorses(CurrentOwner.Id);
+            Console.WriteLine(OwnedHorses);
+        }
+
+    }
+    }
 }

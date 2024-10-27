@@ -10,7 +10,7 @@ public class Horse
     private int id;
     private string name;
     private int ownerId;
-    
+
     // Constructor
     public Horse() { }
     public Horse(string name, DateOnly dob, int ownerId)

@@ -41,7 +41,7 @@ public class Race
         return $"{Name} at: {StartTime}";
     }
 
-     public static Race? GetRaceById(int id)
+    public static Race? GetRaceById(int id)
     {
         var allEvents = Event.LoadEvents();
         foreach (var evnt in allEvents)
@@ -59,5 +59,10 @@ public class Race
         }
 
         return null;
+    }
+
+    public string DisplayTime()
+    {
+        return $"{this.StartTime.ToShortTimeString()} on {this.StartTime.ToShortDateString()}";
     }
 }
