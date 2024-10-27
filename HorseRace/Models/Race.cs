@@ -89,16 +89,21 @@ public class Race
         var race = GetRaceById(RaceId);
         if (race != null)
         {
-            var raceEvent = Event.GetEventById(race.EventId);
-        }
-        
-        var horse = Horse.GetHorseById(HorseId);
-
-        if (race.Horses.Add(horse))
-        {
-            Console.WriteLine($"Horse {horse.Name} added");
+            Console.WriteLine($"RACE: {race.Name}");
+            var horse = Horse.GetHorseById(HorseId);
+            if (race.Horses == null)
+            {
+                race.horses = new HashSet<Horse> { horse };
+                Console.WriteLine($"Hashset created with {horse.Name} added");
+            }
+            else
+            {
+                race.Horses.Add(horse);
+                Console.WriteLine($"Horse {horse.Name} added");
+            }
             UpdateRaceInEvents(race);
         }
-
+        
+       
     }
 }
