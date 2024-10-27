@@ -29,7 +29,20 @@
         "Name": "Race 2",
         "StartTime": "2024-10-20T17:03:31.82858+01:00",
         "EventId": 1,
-        "Horses": null
+        "Horses": [
+          {
+            "Id": 359669786,
+            "Name": "Gerry",
+            "DateOfBirth": "2016-09-29",
+            "OwnerId": 2
+          },
+          {
+            "Id": 140251690,
+            "Name": "Thunder",
+            "DateOfBirth": "2020-06-12",
+            "OwnerId": 2
+          }
+        ]
       },
       {
         "Id": 2024579768,

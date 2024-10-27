@@ -32,7 +32,7 @@
                                     <div class="card-header">
                                         <h5 class="card-title">Upload Race Horses</h5>
                                     </div>
-                                    <InputFile OnChange="OnInputFileChange" accept=".json" />
+                                    <InputFile OnChange="e => OnInputFileChange(e, r)" class="form-control" accept="application/json" />
                                 </div>
                                 <br/>
                             </div>
@@ -107,13 +107,11 @@ else
         Navigation.NavigateTo(PARENT_EVENT_PATH);
     }
     
-    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    private async Task OnInputFileChange(InputFileChangeEventArgs e, Race race)
 {
-    Console.WriteLine(e);
     var file = e.File;
     Console.WriteLine(file.Name);
-    Console.WriteLine(file.ContentType);
-    if (file != null)
+    if (file != null && file.ContentType == "application/json")
     {
         try
         {
@@ -131,6 +129,7 @@ else
             if (horseList != null)
             {
                 Console.WriteLine(horseList);
+                race.Horses = horseList.ToHashSet();
             }
             else
             {
@@ -142,7 +141,7 @@ else
             Console.WriteLine(exctn);
         }
     }
-    
+    //https://www.youtube.com/watch?v=fW-rx2ONPGM
 }
 
 }
