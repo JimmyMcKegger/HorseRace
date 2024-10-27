@@ -34,12 +34,12 @@ else
                 @onclick="UpdateEvent">
                 Update Event
             </button>
-                <button
-                    type="button"
-                    class="btn btn-danger"
-                    @onclick="DeleteEvent">
-                    Delete Event
-                </button>
+            <button
+                type="button"
+                class="btn btn-danger"
+                @onclick="DeleteEvent">
+                Delete Event
+            </button>
             </div>
         </div>
     </div>
@@ -54,30 +54,26 @@ else
     protected override void OnParametersSet()
     {
         int i = Int32.Parse(Id);
-        Console.WriteLine(i);
         currentEvent = Event.GetEventById(i);
     }
     
     [Inject] NavigationManager Navigation { get; set; }
     
-    private void UpdateEvent()
+    public void UpdateEvent()
     {
         // load all events
         List<Event> allEvents = Event.LoadEvents();
         
         // find the saved version
-        int index = allEvents.FindIndex(e => e.Id == currentEvent.Id);
-        Console.WriteLine($"INDEX: {index}");
+        int index = Event.GetIndexOfEvent(currentEvent.Id);
 
         // replace values with new ones
         if (index == -1)
         {
-            Console.WriteLine("ERROR");
             Navigation.NavigateTo($"/events");
         }
         else
         {
-            Console.WriteLine($"INDEX: {index}");
             allEvents[index].Name = currentEvent.Name;
             allEvents[index].Location = currentEvent.Location;
             allEvents[index].NumRaces = currentEvent.NumRaces;

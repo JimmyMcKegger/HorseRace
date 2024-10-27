@@ -78,4 +78,19 @@ public class Horse
         allHorses.Add(newHorse);
         SaveHorses(allHorses);
     }
+    
+    public static Horse? GetHorseById(int id)
+    {
+        var allHorses = AllHorses();
+        foreach (var hrs in allHorses)
+        {
+            if (hrs.Id == id)
+            {
+                return hrs;
+            }
+        }
+
+        return null;
+    }
+
 }

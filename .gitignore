@@ -485,5 +485,7 @@ $RECYCLE.BIN/
 
 # Database files
 HorseRace/Data/users.json
+HorseRace/Data/events.json
+HorseRace/Data/horses.json
 HorseRace/Data/HorseRace.db
 HorseRace/Data/HorseRace.*

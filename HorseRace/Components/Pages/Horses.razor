@@ -1,28 +1,59 @@
 
 <div class="card" style="width:auto;">
     <div class="card-header">
-        <h4>Horses</h4>
+        <h5>@Title</h5>
     </div>
     <br/>
     <div class="card-body">
         <ul class="list-group list-group-flush">
-            @if (horseList != null && horseList.Count > 0)
+            @if (HorseList != null && HorseList.Count > 0)
             {
-                @foreach (var h in horseList)
+                @foreach (var h in HorseList)
                 {
                     <li class="list-group-item">
                         <h5>Name</h5>
                         <p>@h.Name</p>
                     </li>
+                    @if (AddToRaceButtons)
+                    {
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            @onclick="() => AddToRace(RaceId, h.Id)">
+                            Add To Race
+                        </button>
+                    }
                 }
             }
-            
         </ul>
     </div>
 </div>
 
 
 @code {
-[Parameter]
-public List<Horse>? horseList { get; set; }
+    [Parameter] 
+    public List<Horse>? HorseList { get; set; }
+    [Parameter] 
+    public string? Title { get; set; } = "Horses";
+    [Parameter] 
+    public bool AddToRaceButtons { get; set; } = false;
+    [Parameter] 
+    public string RaceId { get; set; } = "0";
+    
+    [Inject] NavigationManager Navigation { get; set; }
+
+    public void AddToRace(string raceId, int horseId)
+    {
+        
+        var raceNum = Int32.Parse(raceId);
+        Console.WriteLine(raceNum);
+        Console.WriteLine(horseId);
+        if (raceNum > 0)
+        {
+            Console.WriteLine("Adding Horse");
+            Race.AddHorse(raceNum, horseId);
+        }
+        
+        Navigation.NavigateTo($"/events", true);
+    }
 }

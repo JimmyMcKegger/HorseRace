@@ -65,4 +65,40 @@ public class Race
     {
         return $"{this.StartTime.ToShortTimeString()} on {this.StartTime.ToShortDateString()}";
     }
+
+    public static void UpdateRaceInEvents(Race updatedRace)
+    {
+        var allEvents = Event.LoadEvents();
+        var EventWithRace = Event.GetIndexOfEvent(updatedRace.EventId);
+        
+        var currentEvent = allEvents[EventWithRace];
+        for (int i = 0; i < currentEvent.Races.Count; i++)
+        {
+            if (currentEvent.Races[i].Id == updatedRace.Id)
+            {
+                currentEvent.Races[i] = updatedRace;
+                Console.WriteLine($"{currentEvent.Races[i]} updated");
+            }
+        }
+        
+        Event.UpdateEvents(currentEvent);
+    }
+
+    public static void AddHorse(int RaceId, int HorseId)
+    {
+        var race = GetRaceById(RaceId);
+        if (race != null)
+        {
+            var raceEvent = Event.GetEventById(race.EventId);
+        }
+        
+        var horse = Horse.GetHorseById(HorseId);
+
+        if (race.Horses.Add(horse))
+        {
+            Console.WriteLine($"Horse {horse.Name} added");
+            UpdateRaceInEvents(race);
+        }
+
+    }
 }

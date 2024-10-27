@@ -9,30 +9,38 @@
 <br>
 <div class="container">
     <div class="card" style="width:auto;">
-        <div class="card-header">
-            <h5 class="card-title">@currentRace.Name</h5>
-        </div>
+
         <div class="card-body">
             <div class="list-group list-group-flush">
                 @if (currentRace.Horses != null && currentRace.Horses.Count > 0)
                 {
-                <Horses horseList=RaceHorses></Horses>
+                    <Horses
+                        HorseList=RaceHorses
+                        Title="Horses Competing">
+                    </Horses>
+                }
+                else
+                {
+                    <p>No horses entered</p>
                 }
             </div>
-            <a href="/events" class="btn btn-secondary">Back</a>
         </div>
     </div>
     <br/>
     @if (PageRole == UserRole.Owner)
     {
     <div class="card" style="width:auto;">
-        <div class="card-header">
-            <h5 class="card-title">Horses for @CurrentOwner.Name</h5>
-        </div>
         <div class="card-body">
             <div class="list-group list-group-flush">
-                <Horses horseList=OwnedHorses></Horses>
+                <Horses
+                    HorseList=OwnedHorses
+                    Title="My horses"
+                    AddToRaceButtons=true
+                    RaceId=@Id
+                    >
+                </Horses>
             </div>
+            <br/>
             <a href="/events" class="btn btn-secondary">Back</a>
         </div>
     </div>

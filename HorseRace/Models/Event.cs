@@ -120,4 +120,42 @@ public class Event
         Console.WriteLine("No events found.");
         return null;
     }
+
+    public static int GetIndexOfEvent(int EventId)
+    {
+        var allEvents = LoadEvents();
+        int index = allEvents.FindIndex(e => e.Id == EventId);
+        return index;
+        
+    }
+
+    public static void UpdateEvents(Event updatedEvent)
+    {
+        var allEvents = LoadEvents();
+        var index = GetIndexOfEvent(updatedEvent.Id);
+        
+        allEvents[index].Name = updatedEvent.Name;
+        allEvents[index].Location = updatedEvent.Location;
+        allEvents[index].NumRaces = updatedEvent.NumRaces;
+        allEvents[index].Races = updatedEvent.Races;
+        
+        SaveEvents(allEvents);
+    }
+    
+    public static Event? GetEventByRaceId(int id)
+    {
+        var allEvents = LoadEvents();
+        foreach (var evnt in allEvents)
+        {
+            foreach (var race in evnt.Races)
+            {
+                if (race.Id == id)
+                {
+                    return evnt;
+                }
+            }
+        }
+
+        return null;
+    }
 }
